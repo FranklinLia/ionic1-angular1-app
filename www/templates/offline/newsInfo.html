@@ -1,0 +1,19 @@
+<!-- 益联快报内容 -->
+<ion-view view-title="益联快报内容" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar>
+		<ion-header-bar class="bar-assertive header-back">
+			<div class="buttons">
+				<button class="button iconfont icon-back1 button-clear" btn-back></button>
+			</div>
+			<h1 class="title">{{info.title}}</h1>
+		</ion-header-bar>
+	</ion-header-bar>
+	<ion-content>
+		<div class="newsinfo-con">
+			<h3>{{info.title}}</h3>
+			<p ng-bind-html="info.content"></p>
+		</div>
+	</ion-content>
+</ion-view>
+
+

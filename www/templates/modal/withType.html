@@ -1,0 +1,21 @@
+<div id="address-model">
+	<div class="address-tit">
+		<h3>{{title || '提现方式'}}</h3>
+		<i class="iconfont icon-close" ng-click="popover.hide()"></i>
+		<span>{{'1000022'|T}}</span>
+	</div>
+	<ion-scroll class="address-det" scrollbar-y="false">
+		<ul class="address-list">
+			<li class="address-item" ng-repeat="x in withdraw.method" ng-click="selectOption(x.methodName, x.methodType)">{{x.methodName}}</li>
+		</ul>
+		<ul class="address-list">
+			<li class="address-item" ng-repeat="(k, x) in giveMoney.payType" ng-click="selectOption(k, x)">{{x}}</li>
+		</ul>
+		<ul class="address-list" ng-if="!showBank">
+			<li class="address-item" ng-repeat="(k, x) in info.withType" ng-click="selectOption(k, x)">{{x}}</li>
+		</ul>
+		<ul class="address-list" ng-if="showBank">
+			<li class="address-item" ng-repeat="(k, x) in info.cardTypeInfo" ng-click="selectOption(k, x, 'bank')">{{x}}</li>
+		</ul>
+	</ion-scroll>
+</div>

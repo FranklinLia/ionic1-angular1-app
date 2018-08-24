@@ -1,0 +1,53 @@
+<!-- 线下商家 -->
+<ion-view view-title="线下商家" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back flex" style="padding: 7px 5px;">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title" ng-if="cid">{{title}}</h1>
+		<div class="cata-search flex_1" ng-if="!cid">
+			<i class="iconfont icon-search"></i>
+			<input type="text" class='flex' placeholder="请输入关键词" ng-model="info.keywords" ng-enter="search()">
+		</div>
+		<div class="buttons"  ng-if="!cid">
+			<button class="button button-clear" style="font-size: 14px;" ng-click="search('shops',info.keywords)">搜索</button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content>
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+
+		<div class="car-empty" ng-if="orderEmpty">
+			<div></div>
+			<span>什么也没有...</span>
+		</div>
+		<div class="ord-detail" ng-if="!orderEmpty" ng-repeat="goods in shopList" ui-sref="offline.shopInfo({spid:goods.id})">
+			<div class="ord-left con-left index-left">
+				<img class="con-left-img" ng-src="{{goods.logo || 'img/noGoods.png'}}" alt="">
+				<div class="ord-good-det">
+					<p class="text-overflow_1">{{goods.title}}</p>
+					<span class="con-good-bot">
+                        <span>{{goods.clicks}}人光临</span>
+                        <ul class="shop-star">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+                    </span>
+					<span class="con-good-bot">
+                        <span class="text-overflow_1">{{goods.birthInfo}}</span>
+                        <span>{{goods.distance}}</span>
+                    </span>
+				</div>
+			</div>
+		</div>
+		<div class="s_com_btm" ng-if="isShowBtm"><p></p><span>我是有底线的</span><p></p></div>
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMoreGoods()" distance="1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>
+
+
+

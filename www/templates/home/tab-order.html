@@ -1,0 +1,76 @@
+<!-- 订单 -->
+<ion-view view-title="我的订单" hide-nav-bar="true" hide-back-button="true">
+	<!-- 内容 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<!--<div class="buttons">-->
+			<!--<button class="button iconfont icon-back1 button-clear" ui-sref="tab.my"></button>-->
+		<!--</div>-->
+		<h1 class="title">{{status == 5 ? '退换货': '我的订单'}}</h1>
+	</ion-header-bar>
+	<div class="bar bar-subheader s-order-list" style="border-bottom: none;" ng-if="status != 5">
+		<ul class="ord-tabs">
+			<li  ng-click="isLogin(0)"><a href="javescript:;"><div class="ord-tab-title" ng-class="{'ord-tab-active': status == 0}"><span>全部</span></div></a></li>
+			<li ng-click="isLogin(1)"><a href="javescript:;"><div class="ord-tab-title" ng-class="{'ord-tab-active': status == 1}"><span>待付款</span></div></a></li>
+			<li ng-click="isLogin(2)"><a href="javescript:;"><div class="ord-tab-title" ng-class="{'ord-tab-active': status == 2}"><span>待发货</span></div></a></li>
+			<li ng-click="isLogin(3)"><a href="javescript:;"><div class="ord-tab-title" ng-class="{'ord-tab-active': status == 3}"><span>待收货</span></div></a></li>
+			<li ng-click="isLogin(4)"><a href="javescript:;"><div class="ord-tab-title" ng-class="{'ord-tab-active': status == 4}"><span>待评价</span></div></a></li>
+		</ul>
+	</div>
+	<ion-content >
+		<ion-refresher pulling-text="下拉刷新" refreshing-icon="" on-refresh="reload()"></ion-refresher>
+		<div style="height:44px" ng-if="status != 5"></div>
+		<!-- 订单为空时 -->
+		<div class="car-empty" ng-if="!checkAuth">
+			<div></div>
+			<span>您还没有登录，请先登录吧！</span>
+			<button class="go-btn" ui-sref="auth.login">去登录</button>
+		</div>
+		<div ng-if="checkAuth">
+			<div class="car-empty ord-empty" ng-if="orderEmpty">
+				<div class="ord-empty-bg"></div>
+				<span>您还没有相关订单哦~</span>
+			</div>
+
+			<ul class="ord-tab-list" ng-if="!orderEmpty">
+				<li class="ord-tab-item" ng-repeat="list in getOrderList" >
+					<div class="ord-tab-con">
+						<div class="ord-con-tit">
+							<span class="ord-tit-name" style="background-size: 13%">{{list.shopName}}</span>
+							<span class="ord-red">{{getOrderStatus[list.isStatus]}}</span>
+						</div>
+						<div class="ord-detail" ng-repeat="goods in list.goodsList" ui-sref="mall.orderDetails({'orderSn':list.orderSn})">
+							<div class="ord-left">
+								<img ng-src="{{goods.thumb}}" alt="" >
+								<div class="ord-good-det">
+									<p class="text-overflow_2">{{goods.goodsName}}</p>
+									<span ng-if="goods.goodsField">规格：{{goods.goodsField}}</span>
+								</div>
+							</div>
+							<div class="ord-right">
+								<span>${{goods.goodsPrice}}</span>
+								<span class="ord-num">x{{goods.goodsNum}}</span>
+							</div>
+						</div>
+						<div class="ord-sum">
+							<p>共{{list.orderNum}}件商品 合计:<span class="ord-price">${{list.payPrice}}</span></p>
+						</div>
+						<div class="ord-sum" ng-if="list.payStatus == 0 && list.payType !='delivery'">
+							<button class="btn ord-del" ng-if="list.orderStatus != -1"  ng-click="cancel(list.orderId)">取消订单</button>
+							<button class="btn ord-del" ng-if="list.orderStatus == -1"  ng-click="delete(list.orderId)">删除订单</button>
+							<button class="btn ord-pay" ng-if="list.orderStatus != -1"  ui-sref="mall.payStyle({orderId: list.orderId})">去支付</button>
+						</div>
+						<div class="ord-sum" ng-if="list.payStatus == 1 && list.orderStatus == '2'">
+							<button class="btn ord-pay" ng-if="list.orderStatus != -1"  ui-sref="mall.evaluate({orderSn: list.orderSn})">去评价</button>
+						</div>
+						<div class="ord-sum" ng-if="list.payStatus == 1 && (list.orderStatus ==0 || list.orderStatus == 1)">
+							<button class="btn ord-del" ui-sref="mall.return({orderSn:list.orderSn})">申请退换</button>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="s_com_btm" ng-if="isShowBtm"><p></p><span>我是有底线的</span><p></p></div>
+		</div>
+
+		<ion-infinite-scroll ng-if="noMore"  on-infinite="loadMore()" distance="1%" icon="" immediate-check="false"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

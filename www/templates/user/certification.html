@@ -1,0 +1,23 @@
+<!-- 实名认证 -->
+<ion-view view-title="实名认证" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'1000028'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div class="rec-act mt5 cer-act">
+			<span>{{'1000029'|T}}</span>
+			<input type="text" placeholder="{{'1000030'|T}}" ng-model="real.name">
+		</div>
+		<div class="rec-act cer-act">
+			<span>{{'1000031'|T}}</span>
+			<input type="text" placeholder="{{'1000032'|T}}" ng-model="real.idcard">
+		</div>
+		<div class="pay-btn">
+			<button ng-click="submit()">{{'1000033'|T}}</button>
+		</div>
+	</ion-content>
+</ion-view>

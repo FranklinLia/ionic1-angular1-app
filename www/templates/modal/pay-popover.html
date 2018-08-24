@@ -1,0 +1,13 @@
+<div id="pay-model">
+	<div class="paypop-tit">
+		<h3>{{'10000184'|T}}</h3>
+	</div>
+	<div class="paypop-msg">
+		<span>{{'10000185'|T}}：${{checkout.credit2}}</span>
+		<span>{{'10000186'|T}}：${{checkout.orderId.payPrice}}</span>
+	</div>
+	<div class="paypop-btn">
+		<button class="new-btn" ng-click="popover.hide()">{{'10000130'|T}}</button>
+		<button class="new-btn new-ok-btn" ng-click="creditPay()">{{'1000076'|T}}</button>
+	</div>
+</div>

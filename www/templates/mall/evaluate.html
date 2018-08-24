@@ -1,0 +1,86 @@
+<ion-view view-title="收货评价" hide-nav-bar="true" hide-back-button="true">
+	<!-- 收货评价 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000268'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content class="man-con">
+		<div ng-repeat="items in orderInfo">
+			<div ng-repeat="item in items.goods">
+				<div class="eva-goods">
+					<div class="eva-goods-det">
+						<img ng-src="{{item.thumb}}">
+						<h3 ng-bind="item.goodsName"></h3>
+					</div>
+					<textarea ng-model="form[item.goodsId].remark" cols="30" rows="5" placeholder="{{'10000269'|T}}"></textarea>
+					<div class="eva-num">
+						<span>0/1000</span>
+					</div>
+					<div class="eva-photo">
+						<img class="img" ng-src="{{img}}" ng-repeat="(i, img) in form[item.goodsId]['thumbs'] track by $index" ng-click="form[item.goodsId]['thumbs'].splice(i, 1)">
+						<img class="upload" ng-src="img/photo-upload.png" alt="" ng-click="uploadImg(item.goodsId)" ng-if="form[item.goodsId]['thumbs'].length < 5">
+					</div>
+				</div>
+				<ul class="eva-center">
+					<li ng-click="">
+						<label>
+							<input class="eva-good-radio" type="radio" value="3" ng-model="form[item.goodsId].score">
+							<span class="eva-flower eva-good"></span>
+							<span class="eva-flower-active">{{'10000270'|T}}</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input class="eva-middle-radio" type="radio" value="2" ng-model="form[item.goodsId].score">
+							<span class="eva-flower eva-middle"></span>
+							<span>{{'10000271'|T}}</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input class="eva-bad-radio" type="radio" value="1" ng-model="form[item.goodsId].score">
+							<span class="eva-flower eva-bad"></span>
+							<span>{{'10000272'|T}}</span>
+						</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="eva-bot">
+			<div class="eva-bot-tit">
+				<span>{{'10000273'|T}}</span>
+				<span class="eva-tit-rig">{{'10000274'|T}}</span>
+			</div>
+			<ul class="eva-bot-list">
+				<li class="eva-bot-item">
+					<span>{{'10000275'|T}}</span>
+					<div class="eva-bot-icon">
+						<span ng-repeat="i in [1, 2, 3, 4, 5]" ng-click="setStar('desc', i)" ng-class="{'active': form['star']['desc'] >= i}"></span>
+					</div>
+				</li>
+				<li class="eva-bot-item">
+					<span>{{'10000276'|T}}</span>
+					<div class="eva-bot-icon">
+						<span ng-repeat="i in [1, 2, 3, 4, 5]" ng-click="setStar('express', i)" ng-class="{'active': form['star']['express'] >= i}"></span>
+					</div>
+				</li>
+				<li class="eva-bot-item">
+					<span>{{'10000277'|T}}</span>
+					<div class="eva-bot-icon">
+						<span ng-repeat="i in [1, 2, 3, 4, 5]" ng-click="setStar('serve', i)" ng-class="{'active': form['star']['serve'] >= i}"></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</ion-content>
+	<ion-footer-bar>
+		<div class="pay-btn eva-btn" ng-click="submit()">
+			<button>
+				<span>{{'10000278'|T}}</span>
+			</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

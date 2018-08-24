@@ -1,0 +1,88 @@
+<!-- 店铺收藏 -->
+<ion-view view-title="店铺收藏" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<div class="pro-head">
+			<ul class="pro-nav col-nav">
+				<li ng-class="{'pro-active':type == 'shopFollow'}" ng-click="selectType('shopFollow')">店铺</li>
+				<li ng-class="{'pro-active':type == 'goodsLike'}"  ng-click="selectType('goodsLike')">商品</li>
+			</ul>
+		</div>
+	</ion-header-bar>
+	<ion-content style="top: 50px;">
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<!-- 收藏为空时 -->
+		<div class="car-empty" ng-if="orderEmpty">
+			<div class="col-empty-bg"></div>
+			<span>您还没有收藏哦~</span>
+		</div>
+		<div class="cla-con">
+			<ul class="col-tabs-list">
+				<li ng-if="type == 'shopFollow' && !orderEmpty" class="ord-tab-item" ng-repeat="list in colllist.list" ui-sref="mall.shop({spid:list.spid})">
+					<div class="ord-detail col-details">
+						<div class="ord-left col-right sto-right">
+							<img ng-src="{{list.logo}}" alt="">
+							<div class="ord-good-det">
+								<p>{{list.title}}</p>
+								<span class="car-con-bot">
+									<span>
+										<span class="mr8">{{list.care}}人关注</span>
+									</span>
+								</span>
+								<span class="car-con-bot">
+									<span  ng-click="delTrack(list.id,$event,$index)">
+										<span class="sto-special mr8"><i class="iconfont icon-delete"></i>删除</span>
+										<!--<span class="sto-ticket">券</span>-->
+									</span>
+								</span>
+								<span class="sto-details"></span>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li ng-if="type == 'goodsLike' && !orderEmpty" class="ord-tab-item" ng-repeat="list in colllist.list" ui-sref="mall.goods({id:list.goodsId})">
+					<div class="ord-detail col-details">
+						<div class="ord-left col-right sto-right">
+							<img ng-src="{{list.thumb}}" alt="">
+							<div class="ord-good-det">
+								<p class="text-overflow_1">{{list.goodsName}}</p>
+								<span class="car-con-bot">
+									<span>
+										<!--<span class="mr8">169人关注</span>-->
+										<i>$
+											<span class="col-price">{{list.spe_price}}</span>
+										</i>
+									</span>
+								</span>
+								<span class="car-con-bot">
+									<span  ng-click="delTrack(list.id,$event,$index)">
+										<span class="sto-special mr8"><i class="iconfont icon-delete"></i>删除</span>
+										<!--<span class="sto-ticket">券</span>-->
+									</span>
+								</span>
+								<span class="sto-details"></span>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<!-- 为您推荐 -->
+			<div class="ind-hotListTit nomargTop">
+				<img src="img/imgs/col-tuijian.png">
+			</div>
+			<div class="ind-tuijian" >
+				<div class="ind-tuijian-item" ng-repeat="list in moreGoods" ui-sref="mall.goods({id:list.id})">
+					<img ng-src="{{list.thumb}}" alt="">
+					<div class="ind-tuijian-con">
+						<p class="ind-tuijian-tit text-overflow_2">{{list.goodsName}}</p>
+						<span class="price">${{list.spe_price}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>
+

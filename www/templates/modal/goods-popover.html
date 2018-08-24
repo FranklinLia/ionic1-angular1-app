@@ -1,0 +1,42 @@
+<div id="goods-model">
+	<div class="goods-tit">
+		<img ng-src="{{goods.thumb || 'img/noGoods.png'}}" alt="">
+		<p class="goods-tit-det">
+			<span class="goods-pri">
+				$<span ng-if="goods.attrList !=0">&nbsp;{{((goodsOp[priceNum].price-0) + (chajia-0)) | number:2}}</span>
+				<span ng-if="goods.attrList ==0">{{goods.spe_price}}</span>
+			</span>
+			<span>
+				{{'10000203'|T}}<q data-stock="1305" ng-if="goods.attrList !=0">“{{goodsOp[priceNum].count}}”</q>
+				<q  ng-if="goods.attrList ==0">{{goods.total}}</q>{{'10000178'|T}}<br>{{'1000022'|T}} {{'10000215'|T}}{{'1000099'|T}} {{'10000204'|T}}
+			</span>
+		</p>
+		<i class="iconfont icon-close goods-close" ng-click="popover.hide()"></i>
+	</div>
+	<div class="goods-attr_all" ng-if="(goods.field1 !== '' && goods.attrList.color[0] !== '') || goods.field2 !== '' && goods.attrList.size[0].field_2 !== ''">
+		<div class="goods-attr" ng-if="goods.field1 !== '' && goods.attrList.color[0] !== ''">
+			<h4>{{goods.field1}}：</h4>
+			<ul class="goods-color-list">
+				<li class="goods-color-item" ng-repeat="(field_1, item) in goods.attrList.color" ng-click="selectAttr1(goods.attrList.field[field_1].id,$index)" ng-class="{'goods-color-active': opIndex1 ? $index == opIndex1 : $index==0 }">{{item}}</li>
+			</ul>
+		</div>
+		<div class="goods-attr" ng-if="goods.field2 !== '' && goods.attrList.size[0].field_2 !== ''">
+			<h4>{{goods.field2}}：</h4>
+			<ul class="goods-color-list">
+				<li class="goods-color-item" ng-repeat="(field_2, item) in goodsOp"  ng-click = "selectAttr2(item.id,$index)" ng-class="{'goods-color-active': opIndex2 ? $index == opIndex2 : $index==0 }">{{item.field_2}}</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="goods-num">
+		<h5>{{'10000204'|T}}：</h5>
+		<span class="car-num">
+			<button class="car-del" ng-click="minusNum()" style="background: #fff">-</button>
+			<input class="car-number" type="text"  ng-model="buyNum" disabled>
+			<button class="car-add" ng-disabled="goods.task_goods == 1" style="background: #fff"  ng-click="addNum()">+</button>
+	  </span>
+	</div>
+	<button class="btm_btn" ng-click="addCart()" ng-if="buyType == 1">{{'1000076'|T}}</button>
+	<button class="btm_btn" ng-click="buyInterim(goods.isRealname)" ng-if="buyType == 2">{{'1000076'|T}}</button>
+	<button class="btm_btn" ng-click="login()" ng-if="buyType == 3">{{'10000154'|T}}</button>
+</div>

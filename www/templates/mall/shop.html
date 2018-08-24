@@ -1,0 +1,89 @@
+<ion-view view-title="商家店铺" hide-nav-bar="true" hide-back-button="true" class="shop-cont">
+	<!-- 商家店铺 -->
+	<!--<ion-header-bar class="bar-assertive header-back">-->
+		<!--<div class="buttons">-->
+			<!--<button class="button iconfont icon-back1 button-clear" btn-back></button>-->
+		<!--</div>-->
+		<!--&lt;!&ndash; 搜索框 &ndash;&gt;-->
+		<!--<div class="ind-top-search">-->
+			<!--<div class="ind-search"></div>-->
+			<!--<i class="iconfont icon-search"></i>-->
+			<!--<input placeholder="请输入关键字">-->
+		<!--</div>-->
+	<!--</ion-header-bar>-->
+	<ion-content style="top: 0px;">
+		<div class="shop-top">
+			<div class="flex">
+				<div class="buttons">
+					<button class="button iconfont icon-back1 button-clear" style="color: #fff" btn-back></button>
+				</div>
+				<!--<div class="ind-top-search flex_1" ui-sref="mall.list({type:'goods',spid:shop.shopInfo.id, speType: speType})">-->
+					<!--<div class="ind-search"></div>-->
+					<!--<i class="iconfont icon-search"></i>-->
+					<!--<input placeholder="请输入关键字" >-->
+				<!--</div>-->
+			</div>
+			<!-- 搜索框 -->
+
+			<!--<img src="../img/imgs/images/shop-bg_02.jpg" alt="">-->
+			<div class="shop-top-det">
+				<div class="shop-top-left">
+					<img ng-src="{{shop.shopInfo.logo || 'img/noGoods.png'}}" alt="">
+					<div class="shop-top-rig">
+						<p class="text-overflow_1">{{shop.shopInfo.title}}</p>
+						<ul class="shop-star">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+				<button ng-click="careShop()" ng-if="isCare == 0"><span></span>{{'10000199'|T}}</button>
+				<button ng-click="careShop()" ng-if="isCare != 0"><span></span>{{'10000200'|T}}</button>
+			</div>
+		</div>
+		<ul class="ord-tabs">
+			<li>
+				<div class="ord-tab-title shop-tab-tit shop-tab-active">
+					<span class="shop-icon"></span>
+					<span>{{'10000198'|T}}</span>
+				</div>
+			</li>
+			<li ui-sref="mall.list({type:'goods',spid:shop.shopInfo.id})">
+				<div class="ord-tab-title shop-tab-tit">
+					<span class="shop-num">{{shop.goodsNum}}</span>
+					<span>{{'10000105'|T}}</span>
+				</div>
+			</li>
+			<li ui-sref="mall.list({type:'goods', spid:shop.shopInfo.id, cid:shop.shopInfo.cid, marking:'销量'})">
+				<div class="ord-tab-title shop-tab-tit">
+					<span class="shop-num">{{shop.careNum}}</span>
+					<span>{{'10000202'|T}}</span>
+				</div>
+			</li>
+		</ul>
+		<div class="ind-tuijian">
+			<div class="ind-tuijian-item" ng-repeat="goods in shop.goodsInfo" ui-sref="mall.goods({id: goods.id})">
+				<img ng-src="{{goods.thumb || 'img/noGoods.png'}}" alt="" >
+				<div class="ind-tuijian-con lis-con">
+					<p class="ind-tuijian-tit text-overflow_2">{{goods.goodsName}}</p>
+					<div class="lis-pri">
+						<span class="price">${{goods.spe_price}}
+							<span class="lis-pri-old">${{goods.marketprice}}</span>
+						</span>
+						<i ng-class="goods.isLike == 0 ? 'ion-ios-star-outline':'ion-ios-star'"></i>
+					</div>
+					<span class="lis-num">
+						{{'10000163'|T}}:{{goods.sales}} {{'10000110'|T}}:{{goods.care}}
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="look-all-goods" ui-sref="mall.list({type:'goods',spid:shop.shopInfo.id, speType: speType})">
+			<span>{{'100001201'|T}}</span>
+		</div>
+	</ion-content>
+</ion-view>
+

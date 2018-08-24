@@ -1,0 +1,48 @@
+<ion-view view-title="商品返现" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">商品返现</h1>
+		<div class="buttons">
+			<button class="button iconfont icon-iconfont02 button-clear" ng-click="cashGuize()"></button>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<ion-refresher pulling-text="下拉刷新" refreshing-icon="" on-refresh="doRefresh()"></ion-refresher>
+		<div class="car-empty" ng-if="orderEmpty">
+			<div class="col-empty-bg"></div>
+			<span>什么也没有...</span>
+		</div>
+		<div class="rec-act new-act-inp" ng-repeat=" x in cashList.list" ng-if="!orderEmpty">
+			<div class="cash-con" ng-if="x.type == 'pool'">
+				<p ng-if="x.curListNum == ''">可领取</p>
+				<p ng-if="x.curListNum != '' && cashList.title[2] != 1">目前排队【{{x.curListNum}}】名</p>
+				<i>订单号:{{x.orderId}}</i>
+			</div>
+			<div class="cash-con" ng-if="x.type != 'pool'">
+				<p>{{x.period}}/{{x.periodNum}}期</p>
+				<i>返现日:{{x.createtime}}</i>
+			</div>
+			<div class="cash-btn bg-red"  ng-class="x.status == 1 ? 'bg-green' : ''" ng-disabled="x.status == 2 || x.status == 0" ng-click="cashReceive(x.id,'save')">
+				<p>${{x.price}}</p>
+				<i style="color: #fff;">{{x.statusInfo}}</i>
+			</div>
+		</div>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+
+	<div ng-if="!bol">
+		<ion-header-bar class="bar-assertive header-back">
+			<div class="buttons">
+				<button class="button iconfont icon-back1 button-clear" ng-click="cashGuize()"></button>
+			</div>
+			<h1 class="title">返现规则</h1>
+		</ion-header-bar>
+
+		<ion-content class="bodybg-normal">
+			<div class="cashback-countent padding" ng-bind-html="cashList.info"></div>
+		</ion-content>
+</ion-view>

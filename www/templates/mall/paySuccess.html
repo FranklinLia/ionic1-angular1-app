@@ -1,0 +1,34 @@
+<ion-view view-title="支付成功" hide-nav-bar="true" hide-back-button="true">
+	<!-- 支付成功 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<!--<div class="buttons">-->
+			<!--<button class="button iconfont icon-back1 button-clear" btn-back></button>-->
+		<!--</div>-->
+		<h1 class="title"><p>{{'10000224'|T}}</p></h1>
+	</ion-header-bar>
+	<ion-content>
+		<div class="s_pay-tit">
+			<h3 class="assertive">{{'10000224'|T}}</h3>
+			<button ui-sref="tab.home">{{'10000225'|T}}</button><button class="button-assertive" ng-click="toUrl()" style="background: #ff0000;color: #fff">{{'10000226'|T}}</button>
+		</div>
+		<div class="ind-hotListTit" ng-if="goodsShow">
+			<!-- <img src="img/imgs/viewAgain.png" style="width: 116px;"> -->
+			<p>{{'10000227'|T}}</p>
+		</div>
+		<div class="ind-tuijian" ng-if="goodsShow">
+			<div class="ind-tuijian-item" ng-repeat="goods in moreGoods" ui-sref="mall.goods({id: goods.id})">
+				<img ng-src="{{goods.thumb || 'img/noGoods.png'}}" alt="" >
+				<div class="ind-tuijian-con lis-con">
+					<p class="ind-tuijian-tit text-overflow_2">{{goods.goodsName}}</p>
+					<div class="lis-pri">
+						<span class="price">${{goods.spe_price}}</span>
+					</div>
+					<span class="lis-num">
+						{{'10000163'|T}}:{{goods.sales}} {{'10000110'|T}}:{{goods.care}}
+					</span>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+

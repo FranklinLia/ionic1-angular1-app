@@ -1,0 +1,99 @@
+<ion-view view-title="订单详情" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back" style="border-bottom: none">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000279'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div class="orderDet-box">
+			<img src="img/imgs/images/orderDet-head_02.jpg" alt="">
+			<div class="orderDet-tit">
+				<span>{{listDetail[0].isStatus}}</span>
+				<span class="orderDet-img orderDet-paied"></span>
+			</div>
+		</div>
+		<!-- 用户信息 -->
+		<div class="con-user-left orderDet-user">
+			<div class="con-user-inf">
+				<span>{{'1000017'|T}}：{{listOrder.username}}</span>
+				<span class="con-user-num">{{listOrder.mobile}}</span>
+			</div>
+			<span class="con-user-addr text-overflow_2">{{listOrder.province}}-{{listOrder.city}}-{{listOrder.district}}{{listOrder.towm}} {{listOrder.address}}</span>
+		</div>
+
+		<!-- 订单信息 -->
+		<div ng-repeat="x in listDetail">
+			<div class="car-store orderDet-store" ui-sref="mall.shop({spid:listDetail[0].spid})">
+				<span class="car-store-name"><i class="iconfont icon-shop"></i>{{x.shopName}}</span>
+				<span class="car-jiantou-rig" ui-sref="mall.shop"></span>
+			</div>
+			<div ng-repeat="goods in x.goods" ui-sref="mall.goods({id:goods.goodsId})" style="border-top: 1px solid #fff;">
+				<div class="ord-detail orderDet-detail" >
+					<div class="ord-left con-left">
+						<img class="con-left-img" ng-src="{{goods.thumb}}" alt="">
+						<div class="ord-good-det">
+							<p class="text-overflow_1">{{goods.goodsName}}</p>
+							<span ng-if="goods.goodsField != ''">{{'10000152'|T}}：{{goods.goodsField}}</span>
+							<span class="con-good-bot">
+							<span class="con-price">${{goods.goodsPrice}}</span>
+							<span>x{{goods.goodsNum}}</span>
+						</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ord-sum">
+				<button class="btn ord-del" ng-if="x.orderStatus == -3 && (x.payStatus == 1 || x.payType == 'delivery')" ng-click="cancleReturnGoods(x.orderSn)">{{'10000280'|T}}</button>
+				<button class="btn ord-del"  ng-if="x.orderStatus == 0 || x.orderStatus == 1" ui-sref="mall.return({orderSn:x.orderSn})">{{'10000287'|T}}</button>
+				<button class="btn ord-pay" ng-if="x.orderStatus == 2 && x.isBis != 1" ui-sref="mall.evaluate({orderSn: x.orderSn})">{{'10000288'|T}}</button>
+				<button class="btn ord-pay"  ng-if="x.orderStatus == 1" ng-click="confirmGoods(x.orderSn)">{{'10000173'|T}}</button>
+				<button class="btn ord-pay"  ng-if="x.returnStatus == 2 && (x.payStatus == 1 || x.payType == 'delivery')" ui-sref="mall.returnInfo({orderSn:x.orderSn})">{{'10000289'|T}}</button>
+			</div>
+			<div class="con-buy-num">
+				<span>{{'10000191'|T}}<br />{{'10000281'|T}}（{{'10000267'|T}}）</span>
+				<span class="orderDet-buy-rig">
+				<span>${{x.postagePrice}}</span>
+				<span class="orderDet-red">${{x.payPrice}}</span>
+			</span>
+			</div>
+			<div class="con-buy-num">
+				<span>{{'10000283'|T}} : {{x.express || '10000282'|T}}</span>
+			</div>
+			<div class="con-buy-num">
+				<span>{{'10000284'|T}} : {{x.orderExpress || '10000282'|T}}</span>
+			</div>
+		</div>
+
+		<div class="con-buy-num">
+			<span>{{'10000221'|T}} : <span ng-if="listOrder.payType == 'wechat'">{{'10000290'|T}}</span><span ng-if="listOrder.payType == 'alipay'">{{'10000291'|T}}</span><span ng-if="listOrder.payType == 'credit'">{{'10000184'|T}}</span></span>
+		</div>
+
+		<div class="orderDet-mt5">
+			<span>{{'10000285'|T}} : {{listOrder.orderId}}</span>
+			<span>{{'10000286'|T}} : {{listOrder.createtime*1000 | date:'yyyy-MM-dd HH:mm'}}</span>
+		</div>
+		<div class="ord-sum" ng-if="listOrder.payStatus == 0 && listOrder.payType !='delivery'">
+			<button class="btn ord-del" ng-if="listOrder.orderStatus != -1" ng-click="cancel(listOrder.orderId)">{{'10000175'|T}}</button>
+			<button class="btn ord-del" ng-if="listOrder.orderStatus == -1" ng-click="delete(listOrder.orderId)">{{'10000176'|T}}</button>
+			<button class="btn ord-pay" ng-if="listOrder.orderStatus != -1" ui-sref="mall.payStyle({orderId: listOrder.orderId})">{{'10000259'|T}}</button>
+		</div>
+		<!-- 为您推荐 -->
+		<div class="ind-hotListTit nomargTop" ng-if="goodsShow">
+			<!-- <img src="img/imgs/tuijian.png"> -->
+			<p>{{'1000097'|T}}</p>
+			<!--<img class="ind-icon-more" src="img/imgs/jiantou-right.png" ui-sref="user.list">-->
+		</div>
+		<div class="ind-tuijian" ng-if="goodsShow">
+			<div class="ind-tuijian-item" ng-repeat="goods in moreGoods" ui-sref="mall.goods({id:goods.id})">
+				<img ng-src="{{goods.thumb || 'img/noGoods.png'}}" alt="" width="100%">
+				<div class="ind-tuijian-con">
+					<p class="ind-tuijian-tit text-overflow_2">{{goods.goodsName}}</p>
+					<span class="price">${{goods.spe_price}}</span>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+

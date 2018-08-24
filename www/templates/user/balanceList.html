@@ -1,0 +1,110 @@
+<!-- 我的余额 -->
+<ion-view view-title="我的余额" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">我的{{title}}</h1>
+	</ion-header-bar>
+	<div class="bar bar-subheader s-point-list" ng-if="type == 'point'">
+		<ul class="clearfix">
+			<li ng-click="selectAgent(1)" class="text-overflow_1" ng-class="{'active': status == 1}">{{'10000182'|T}}</li>
+			<li ng-click="selectAgent(2)" class="text-overflow_1" ng-class="{'active': status == 2}">{{'10000183'|T}}</li>
+		</ul>
+	</div>
+	<div class="bar bar-subheader s-point-list" ng-if="type == 'red'">
+		<ul class="clearfix">
+			<li ng-click="selectTab(1)" class="text-overflow_1" ng-class="{'active': status == 1}">{{'10000179'|T}}</li>
+			<li ng-click="rebate(2)" class="text-overflow_1" ng-class="{'active': status == 2}">{{'10000180'|T}}</li>
+		</ul>
+	</div>
+	<!-- 内容 -->
+	<ion-content>
+		<ion-refresher pulling-text="{{'10000161'|T}}" refreshing-icon="" on-refresh="reload()"></ion-refresher>
+		<div style="height:44px"></div>
+		<div class="cx_remaining_cont">
+			<div class="car-empty" ng-if="!agentList">
+				<div class="col-empty-bg"></div>
+				<span>{{'1000066'|T}}</span>
+			</div>
+			<div class="remin_list" ng-if="type == 'point'" ng-repeat="x in agentList">
+				<ul>
+					<li class="box-sizing">
+						<div class="remin_text">
+							<p>{{x.realname}}</p>
+							<p>{{x.mobile}}</p>
+						</div>
+						<div class="remin_right">
+							<p>{{'10000184'|T}}：{{x.credit}}</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="remin_list" ng-if="type == 'red' && status == 1" ng-repeat="x in info">
+				<ul>
+					<li class="box-sizing">
+						<div class="remin_text">
+							<p>{{'10000181'|T}}</p>
+							<p>{{x.createtime*1000 | date:'yyyy-MM-dd HH:mm'}}</p>
+						</div>
+						<div class="remin_red_right">
+							<p>{{x.price}}</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="remin_list" ng-if="type == 'red' && status == 2"  ng-repeat="t in order">
+				<ul>
+					<li class="box-sizing">
+						<div class="remin_text">
+							<p>Daily integral return value</p>
+							<p>{{t.createtime*1000 | date:'yyyy-MM-dd HH:mm'}}</p>
+						</div>
+						<div class="remin_red_right">
+							<p>{{t.num}}</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="remin_list" ng-if="!orderEmpty && type == 'balance'">
+			<ul>
+				<li class="box-sizing">
+					<div class="remin_text">
+						<span class="list_fl">提现金额</span>
+						<span class="list_fr">{{x.orderPrice}}</span>
+					</div>
+					<div class="remin_text">
+						<span class="list_fl">手续费</span>
+						<span class="list_fr">{{x.percent}}</span>
+					</div>
+					<div class="remin_text">
+						<span class="list_fl">到账金额</span>
+						<span class="list_fr">{{x.price}}</span>
+					</div>
+					<div class="remin_text">
+						<span class="list_fl">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间</span>
+						<span class="list_fr">{{x.createtime*1000 | date:'yyyy-MM-dd HH:mm'}}</span>
+					</div>
+					<div class="remin_text">
+						<span class="list_fl">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</span>
+						<span class="list_fr">{{x.status}}</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		</div>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+	<ion-footer-bar class="bar bar-footer" ng-if="type != 'point'">
+		<div class="pay-btn eva-btn" >
+			<!-- <button class="" ng-if="type == 'red'" ui-sref="user.balanceAttorn({type:'credit2'})">消  费</button> -->
+			<button class="balance" ng-if="type == 'balance'" ng-click="creditWithdraw()">提  现</button>
+			<button class="balance" ng-if="type == 'balance'" ng-click="creditWithdraw()">充  值</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>
+

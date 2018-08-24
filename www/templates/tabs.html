@@ -1,0 +1,30 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive tabs-bg">
+	<ion-tab class="tab-foot-item" title="{{'10000101'|T}}" icon-off="iconfont icon-shop" icon-on="iconfont icon-shop" href="#/tab/home">
+		<ion-nav-view name="tab-home"></ion-nav-view>
+	</ion-tab>
+<!-- 	<ion-tab class="tab-foot-item" title="线下" icon-off="iconfont icon-home" icon-on="iconfont icon-home" href="#/tab/index">
+		<ion-nav-view name="tab-index"></ion-nav-view>
+	</ion-tab> -->
+
+	<ion-tab class="tab-foot-item" title="{{'1000099'|T}}" icon-off="iconfont icon-list" icon-on="iconfont icon-list" href="#/tab/category">
+		<ion-nav-view name="tab-category"></ion-nav-view>
+	</ion-tab>
+
+	<!--<ion-tab class="tab-foot-item" title="订单" icon-off="iconfont icon-calendar" icon-on="iconfont icon-calendar" href="#/tab/order/0">-->
+		<!--<ion-nav-view name="tab-order"></ion-nav-view>-->
+	<!--</ion-tab>-->
+
+	<ion-tab class="tab-foot-item" title="{{'1000095'|T}}" icon-off="iconfont icon-cart" icon-on="iconfont icon-cart" href="#/tab/cart">
+		<ion-nav-view name="tab-cart"></ion-nav-view>
+	</ion-tab>
+
+	<ion-tab class="tab-foot-item" title="{{'100001'|T}}" icon-off="iconfont icon-my" icon-on="iconfont icon-my" href="#/tab/my">
+		<ion-nav-view name="tab-my"></ion-nav-view>
+	</ion-tab>
+
+</ion-tabs>

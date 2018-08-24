@@ -1,0 +1,37 @@
+<ion-view view-title="商家中心" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000134'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div class="cla-con">
+			<div class="rec-act new-act new-act-inp" ui-sref="shop.qrcode" ng-if="info == 'oto'">
+				<span>{{'1000063'|T}}</span>
+				<i class="iconfont icon-right"></i>
+			</div>
+<!-- 			<div class="rec-act new-act new-act-inp" ui-sref="shop.offOrderList({type:'shop'})">
+				<span>线下订单</span>
+				<i class="iconfont icon-right"></i>
+			</div> -->
+			<div class="rec-act new-act new-act-inp" ui-sref="shop.onOrderList">
+				<span>{{'1000052'|T}}</span>
+				<i class="iconfont icon-right"></i>
+			</div>
+			<!--<div class="rec-act new-act new-act-inp" ui-sref="shop.withdraw">-->
+				<!--<span>提现中心</span>-->
+				<!--<i class="iconfont icon-right"></i>-->
+			<!--</div>-->
+			<!--<div class="rec-act new-act new-act-inp" ui-sref="shop.withdrawList">-->
+				<!--<span>提现记录</span>-->
+				<!--<i class="iconfont icon-right"></i>-->
+			<!--</div>-->
+			<div class="rec-act new-act new-act-inp" ui-sref="shop.moneyInfo">
+				<span>{{'10000292'|T}}</span>
+				<i class="iconfont icon-right"></i>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

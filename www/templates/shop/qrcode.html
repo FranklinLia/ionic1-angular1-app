@@ -1,0 +1,23 @@
+<ion-view view-title="商家二维码" hide-nav-bar="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'1000063'|T}}</h1>
+	</ion-header-bar>
+	<ion-content>
+		<div class="qr-header">
+			<div class="my-qrcode" style="padding: 10px">
+				<img class="flex_1" ng-src="{{info.logo || 'img/imgs/reg-headimg.png'}}">
+			</div>
+			<h5 class="s_shop_tit">{{info.title}}</h5>
+			<div class="share-qcode">
+				<img ng-src="{{QRcode}}" />
+			</div>
+		</div>
+
+		<div style="height: 10px; background-color: #f3f3f3;"></div>
+
+	</ion-content>
+</ion-view>
+

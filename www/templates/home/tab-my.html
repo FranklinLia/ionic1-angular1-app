@@ -1,0 +1,181 @@
+<ion-view view-title="个人中心" hide-nav-bar="true" hide-back-button="true">
+	<!-- 我的 -->
+	<ion-content class="per-con">
+		<ion-refresher pulling-text="{{'10000161'|T}}..." on-refresh="doRefresh()"></ion-refresher>
+
+		<div class="per-head-info">
+			<img src="img/my-bg.png" width="200px" alt="">
+			<div class="per-bg">
+				<div class="per-head">
+					<button class="per-shezhi" ui-sref="user.management"></button>
+				</div>
+				<div class="per-info">
+					<div class="per-person">
+						<div class="per-inf" style="margin-left: 10px;">
+							<img ng-src="{{globalInfo.data.avatar||pageInfo.avatar||'img/imgs/reg-headimg.png'}}" alt="" ui-sref="user.management">
+							<p ng-if="!pageInfo.uid&&!globalInfo.data.uid">
+								<span ui-sref="auth.login">{{'100002'|T}}</span>
+								<span class="per-line"></span>
+								<span ui-sref="auth.register">{{'100003'|T}}</span>
+							</p>
+							<div ng-if="pageInfo.uid||globalInfo.data.uid" style="width: 70%;">
+								<span style="display: block;color: #000;" class="text-overflow_1">{{'100004'|T}}：{{pageInfo.nickname||globalInfo.data.nickname||'100005'|T}}</span>
+								<p >UID：{{pageInfo.uid||globalInfo.data.uid}}</p>
+								<span class="lev" ng-if="pageInfo.isPlus == 1">城市服务商</span><span class="lev" ng-if="pageInfo.cityPartner == 1">城市合伙人</span>
+							</div>
+						</div>
+						<button ng-if="false" class="per-sign"  ng-click="toUrl('user.sign')">签到</button>
+					</div>
+					<ul class="per-list">
+						<li class="per-item" ui-sref="user.storeColl({type:'shopFollow'})" style="height: 72px;">
+							<span class="s_my-common text-overflow_1">{{pageInfo.shopCareNum||0}}</span>
+							<span>{{'1000049'|T}}</span>
+						</li>
+						<li class="per-item" ui-sref="user.storeColl({type:'goodsLike'})" style="height: 72px;">
+							<span class="s_my-common text-overflow_1">{{pageInfo.userCareNum||0}}</span>
+							<span>{{'1000050'|T}}</span>
+						</li>
+						<li class="per-item" ui-sref="user.footprint" style="height: 72px;">
+							<span class="s_my-common text-overflow_1">{{pageInfo.clickCareNum||0}}</span>
+							<span>{{'1000051'|T}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="per-ord" ui-sref="mall.order({status:0})">
+			<span>{{'1000052'|T}}</span>
+			<a class="per-more">{{'1000053'|T}}</a>
+		</div>
+		<ul class="per-list per-white">
+			<li class="per-item" ui-sref="mall.order({status:1})">
+				<span class="per-pay per-posi"><sup ng-if="pageInfo.orderNumOne > 0" ng-bind="pageInfo.orderNumOne"></sup></span>
+				<span>{{'1000054'|T}}</span>
+			</li>
+			<li class="per-item" ui-sref="mall.order({status:2})">
+				<span class="per-send per-posi"><sup ng-if="pageInfo.orderNumTwo > 0" ng-bind="pageInfo.orderNumTwo"></sup></span>
+
+				<span>{{'1000055'|T}}</span>
+			</li>
+			<li class="per-item" ui-sref="mall.order({status:3})">
+				<span class="per-recive per-posi"><sup ng-if="pageInfo.orderNumThree > 0" ng-bind="pageInfo.orderNumThree"></sup></span>
+				<span>{{'1000056'|T}}</span>
+			</li>
+			<li class="per-item" ui-sref="mall.order({status:4})">
+				<span class="per-evaluate per-posi"><sup ng-if="pageInfo.orderNumFour > 0" ng-bind="pageInfo.orderNumFour"></sup></span>
+				<span>{{'1000057'|T}}</span>
+			</li>
+			<li class="per-item" ui-sref="mall.order({status:5})">
+				<span class="per-back per-posi"><sup ng-if="pageInfo.orderNumFive > 0" ng-bind="pageInfo.orderNumFive"></sup></span>
+				<span>{{'1000058'|T}}</span>
+			</li>
+		</ul>
+		<div class="per-ord mt4">
+			<span>{{'1000059'|T}}</span>
+			<p ui-sref="user.balanceAttorn({type:'credit2'})">{{'10000135'|T}}<i class="ion-ios-arrow-right"></i></p>
+		</div>
+		<ul class="per-list per-mon">
+			<li class="per-item" ui-sref="user.balanceList({type: 'red'})">
+				<span class="per-red text-overflow_1">{{pageInfo.credit1||0}}</span>
+				<span>{{'1000060'|T}}</span>
+			</li>
+			<li class="per-item"  ui-sref="shop.offOrderList({type:'shop'})">
+				<span class="per-red text-overflow_1">${{pageInfo.credit2||0}}</span>
+				<span>{{'1000061'|T}}</span>
+			</li>
+			<!--<li class="per-item">-->
+				<!--<span class="per-red">0</span>-->
+				<!--<span>优惠券</span>-->
+			<!--</li>-->
+			<li class="per-item"  ui-sref="user.balanceList({type: 'point'})">
+				<span class="per-red text-overflow_1">{{pageInfo.credit4||0}}</span>
+				<span>{{'1000062'|T}}</span>
+			</li>
+		</ul>
+		<div class="my_btm_nav" ui-sref="user.address">
+			<div class="left">
+				<i class="iconfont icon-dingwei2"></i>
+				<span>{{'1000016'|T}}</span>
+			</div>
+			<i class="ion-ios-arrow-right"></i>
+		</div>
+		<div class="my_btm_nav" ui-sref="user.qrcode">
+			<div class="left">
+				<i class="iconfont icon-erweima-copy" style="font-size: 12px;background: #FF7197;"></i>
+				<span>{{'1000063'|T}}</span>
+			</div>
+			<i class="ion-ios-arrow-right"></i>
+		</div>
+		<div class="my_btm_nav" ui-sref="user.myTeam">
+			<div class="left">
+				<i class="iconfont icon-fenxiang" style="font-size: 12px;background: #FF7197;"></i>
+				<span>{{'1000065'|T}}</span>
+			</div>
+			<i class="ion-ios-arrow-right"></i>
+		</div>
+		<div class="my_btm_nav"  ng-if="globalInfo.data.isShop == 0 || pageInfo.isShop == 0" ng-click="isCityAgent()">
+			<div class="left">
+				<i class="iconfont icon-wode1" style="background: #ffc900;"></i>
+				<span>{{'1000067'|T}}</span>
+			</div>
+			<i class="ion-ios-arrow-right"></i>
+		</div>
+		<div class="my_btm_nav"  ng-if="globalInfo.data.isShop == 0 || pageInfo.isShop == 0" ng-click="toApplyShop()">
+			<div class="left">
+				<i class="iconfont icon-wode1" style="background: #ffc900;"></i>
+				<span>{{'1000077'|T}}</span>
+			</div>
+			<i class="ion-ios-arrow-right"></i>
+		</div>
+		<div class="my_btm_nav"   ui-sref="shop.center" ng-if="globalInfo.data.isDappShop > 0 || pageInfo.isShop > 0">
+			<div class="left">
+				<i class="iconfont icon-shopfill"></i>
+				<span>{{'10000134'|T}}</span>
+			</div>
+			<i class="ion-ios-arrow-right"></i>
+		</div>
+<!-- 		<div class="my_btm_nav" ng-click="isCityAgent(pageInfo.isPlus)" ng-if="pageInfo.isPlus == 0">
+			<div class="left">
+				<i class="iconfont icon-friend" style="background: #ffc900;"></i>
+				<span>申请城市服务商</span>
+			</div>
+			<i class="ion-ios-arrow-right"></i>
+		</div> -->
+<!-- 		<div class="my_btm_nav" ui-sref="user.cityInfo" ng-if="pageInfo.isPlus == 1">
+			<div class="left">
+				<i class="iconfont icon-friend" style="background: #ffc900;"></i>
+				<span>城市服务商收益</span>
+			</div>
+			<i class="ion-ios-arrow-right"></i>
+		</div> -->
+<!-- 		<div class="my_btm_nav" ui-sref="user.partnerInfo" ng-if="pageInfo.cityPartner == 1">
+			<div class="left">
+				<i class="iconfont icon-friend" style="background: #ffc900;"></i>
+				<span>城市合伙人收益</span>
+			</div>
+			<i class="ion-ios-arrow-right"></i>
+		</div> -->
+		<!--<div class="my_btm_nav" ng-if="pageInfo.isDis != 1"  ng-click="isAgent()">-->
+			<!--<div class="left">-->
+				<!--<i class="iconfont icon-friend" style="background: #ffc900;"></i>-->
+				<!--<span>申请代理</span>-->
+			<!--</div>-->
+			<!--<i class="ion-ios-arrow-right"></i>-->
+		<!--</div>-->
+		<!--<div class="my_btm_nav" ng-if="pageInfo.isDis == 1"  ui-sref="user.agentCenter">-->
+			<!--<div class="left">-->
+				<!--<i class="iconfont icon-friend" style="background: #ffc900;"></i>-->
+				<!--<span>代理中心</span>-->
+			<!--</div>-->
+			<!--<i class="ion-ios-arrow-right"></i>-->
+		<!--</div>-->
+
+		<!--<div class="my_btm_nav" ui-sref="shop.offOrderList({type: 'user'})">-->
+			<!--<div class="left">-->
+				<!--<i class="iconfont icon-edit" style="background: #ffc900;"></i>-->
+				<!--<span>线下订单</span>-->
+			<!--</div>-->
+			<!--<i class="ion-ios-arrow-right"></i>-->
+		<!--</div>-->
+	</ion-content>
+</ion-view>

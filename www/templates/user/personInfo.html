@@ -1,0 +1,57 @@
+<ion-view view-title="个人资料" hide-nav-bar="true" hide-back-button="true">
+	<!-- 个人资料 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'100007'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content class="man-con">
+		<ul class="mt5">
+			<li class="rec-act pinf-act">
+				<span>{{'100008'|T}}</span>
+				<span class="pinf-portrait" style="margin-right: -25px;">
+					<img ng-src="{{userInfo.user.avatar||'img/imgs/reg-headimg.png'}}" alt="" ng-click="uploadAvatar()" id="myImage">
+					<!--<span class="new-icon"></span>-->
+				</span>
+			</li>
+			<li class="rec-act pinf-act">
+				<span>{{'100009'|T}}</span>
+				<span class="pinf-name">{{userInfo.user.uid}}</span>
+			</li>
+			<li class="rec-act pinf-act">
+				<span>{{'100004'|T}}</span>
+				<!--<span class="pinf-name">名称</span>-->
+				<input type="text" style="text-align: right" ng-focus="clearname()" ng-model="userInfo.user.nickname">
+			</li>
+			<!--<li class="rec-act pinf-act">-->
+				<!--<span>性别</span>-->
+				<!--<span class="new-icon"></span>-->
+			<!--</li>-->
+			<li class="rec-act pinf-act">
+				<p class="flex_1">{{'1000010'|T}}</p>
+				<div class="common sex">
+					<span ng-click="selectGender(1)" ng-class="userInfo.user.gender == 1 ? 'sex-active':''" ><i ng-class="userInfo.user.gender == 1 ? 'ion-ios-circle-filled':'ion-ios-circle-outline'"></i><em>{{'1000011'|T}}</em></span>
+					<span ng-click="selectGender(2)" ng-class="userInfo.user.gender == 2 ? 'sex-active':''"><i ng-class="userInfo.user.gender == 2 ? 'ion-ios-circle-filled':'ion-ios-circle-outline'"></i><em>{{'1000012'|T}}</em></span>
+				</div>
+			</li>
+		</ul>
+		<!--<ul class="mt5">-->
+			<!--<li class="rec-act pinf-act">-->
+				<!--<span>修改密码</span>-->
+				<!--<span class="new-icon"></span>-->
+			<!--</li>-->
+			<!--<li class="rec-act pinf-act">-->
+				<!--<span>收货地址管理</span>-->
+				<!--<span class="new-icon"></span>-->
+			<!--</li>-->
+		<!--</ul>-->
+		<div class="pay-btn man-btn">
+			<button ng-click="personSubmit()">
+				<span>{{'1000013'|T}}</span>
+			</button>
+		</div>
+	</ion-content>
+</ion-view>
+

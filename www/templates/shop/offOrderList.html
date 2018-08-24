@@ -1,0 +1,44 @@
+<ion-view view-title="线下订单" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000234'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<ion-refresher pulling-text="{{'10000161'|T}}..." on-refresh="doRefresh()"></ion-refresher>
+
+		<!-- <div class="car-empty" ng-if="orderEmpty">
+			<div class="col-empty-bg"></div>
+			<span>什么也没有...</span>
+		</div> -->
+<!-- 		<div class="rec-act new-act-inp" ng-if="!orderEmpty"  ng-repeat="x in order"> -->
+		<div class="rec-act new-act-inp active">
+			<div class="cash-con">
+				<p>{{'10000234'|T}}</p>
+			</div>
+			<div>
+				<p class="with-price">${{pageInfo.credit2||0}}</p>
+			</div>
+		</div>
+		<div class="rec-act new-act-inp" ng-repeat="t in order">
+			<div class="cash-con">
+				<p>{{'10000237'|T}}</p>
+				<i>2018-8-18</i>
+			</div>
+			<div>
+				<p class="with-price">+{{t.num}}</p>
+			</div>
+		</div>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+	<ion-footer-bar class="bar bar-footer" ng-if="type == 'shop'">
+		<div class="pay-btn eva-btn" >
+			<button class="balance" ng-click="creditCharge()">{{'10000235'|T}}</button>
+			<button class="balance" ng-click="creditWithdraw()">{{'10000236'|T}}</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

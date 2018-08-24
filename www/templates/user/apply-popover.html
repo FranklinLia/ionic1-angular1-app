@@ -1,0 +1,12 @@
+<div id="address-model" style="height: 50%;">
+	<div class="address-tit" style="top: auto;">
+		<h3>{{title == 'cid'?'分类':'1000083'|T}}</h3>
+		<i class="iconfont icon-close" ng-click="applyPopover.hide()"></i>
+		<span>{{'1000084'|T}}</span>
+	</div>
+	<ion-scroll class="address-det" scrollbar-y="false">
+		<ul class="address-list">
+			<li class="address-item" ng-repeat="(x, y) in shopTypeInfo.category" ng-click="selectType(x,y)">{{y.title||y}}</li>
+		</ul>
+	</ion-scroll>
+</div>

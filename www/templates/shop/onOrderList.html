@@ -1,0 +1,42 @@
+<ion-view view-title="线上订单" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000293'|T}}</h1>
+	</ion-header-bar>
+	<div class="bar bar-subheader" style="border-bottom: none;">
+		<div class="ag_search">
+			<i class="iconfont icon-search"></i>
+			<input type="text" name="search" ng-model="info.num" placeholder="请输入订单编号">
+			<button id="search" ng-click="searchOrderList()">{{'10000155'|T}}</button>
+		</div>
+	</div>
+	<!-- 内容 -->
+	<ion-content>
+		<ion-refresher pulling-text="下拉刷新" refreshing-icon="" on-refresh="doRefresh()"></ion-refresher>
+
+		<div style="height:44px"></div>
+		<div class="t_shopadmin_con">
+			<div class="tb_th">
+				<span class="tb1 tb">{{'10000285'|T}}</span>
+				<span class="tb2 tb" ng-click="orderPrice('price')">{{'10000196'|T}}<i class="ion-arrow-down-c" ng-if="myprice"></i></span>
+				<span class="tb3 tb" ng-click="orderPrice('time')">{{'10000286'|T}}<i class="ion-arrow-down-c" ng-if="mytime"></i></span>
+			</div>
+			<div class="car-empty" ng-if="orderEmpty">
+				<div class="col-empty-bg"></div>
+				<span>{{'1000066'|T}}...</span>
+			</div>
+			<ul id="tb1" ng-if="!orderEmpty">
+				<li ng-repeat="x in orderList.order" ng-class="x.orderStatus == 0 ? 'active': ''" ui-sref="shop.orderDetail({id: x.id, spid: x.spid})">
+					<span class="tb1 tb" >{{x.orderId}}</span>
+					<span class="tb2 tb">{{x.payPrice}}</span>
+					<span class="tb3 tb">{{x.payTime}}</span>
+				</li>
+			</ul>
+		</div>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>

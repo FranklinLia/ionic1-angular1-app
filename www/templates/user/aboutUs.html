@@ -1,0 +1,53 @@
+<ion-view view-title="关于我们" hide-nav-bar="true">
+
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'1000042'|T}}</h1>
+	</ion-header-bar>
+
+	<ion-content class="bodybg-normal">
+		<div class="yd-about-avater">
+			<div class="img">
+				<img ng-src="{{version.versionLogo}}" alt="" />
+			</div>
+			<div class="txt">
+				{{'1000043'|T}}<br>
+				{{version.version}}
+			</div>
+		</div>
+
+		<ul class="yd-about-cont">
+			<li class="flex">
+				<a href="tel:{{version.CSH}}" class="flex">
+					<b class="ion-android-call t_icon calm"></b>
+					<h3 class="flex_1">{{'1000044'|T}}</h3>
+					<p>{{version.CSH}}</p>
+					<i class="ion-ios-arrow-right t_arrow_right"></i>
+				</a>
+			</li>
+			<li class="flex">
+				<a href="http://wpa.qq.com/msgrd?v=3&uin={{version.QQ}}&site=qq&menu=yes" class="flex">
+					<b class="iconfont icon-service t_icon calm"></b>
+					<h3 class="flex_1">{{'1000045'|T}}</h3>
+					<p>{{version.QQ}}</p>
+					<i class="ion-ios-arrow-right t_arrow_right"></i>
+				</a>
+			</li>
+			<li ng-click="getUpdate()"  class="flex">
+				<a href="javascript:" class="flex">
+					<b class="ion-upload calm"></b>
+					<h3 class="flex_1">{{'1000046'|T}}</h3>
+					<p>{{'1000047'|T}}</p>
+					<i class="ion-ios-arrow-right t_arrow_right"></i>
+				</a>
+			</li>
+		</ul>
+		<!--<div class="yd-c-show">-->
+			<!--<p>Copyright@2016-2017</p>-->
+			<!--<p>珠海脉联科技有限公司</p>-->
+		<!--</div>-->
+	</ion-content>
+
+</ion-view>

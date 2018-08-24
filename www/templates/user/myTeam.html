@@ -1,0 +1,30 @@
+<ion-view view-title="我的团队" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back" style="border-bottom: none;">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'1000065'|T}}</h1>
+	</ion-header-bar>
+	<ion-content>
+		<ion-refresher pulling-text="下拉刷新" refreshing-icon="" on-refresh="doRefresh()"></ion-refresher>
+		<div class="car-empty" ng-if="orderEmpty">
+			<div class="col-empty-bg"></div>
+			<span>{{'1000066'|T}}</span>
+		</div>
+		<ul ng-if="!orderEmpty">
+			<li class="rec-act new-act-inp" ng-repeat="x in team.list" >
+				<div class="team-act">
+					<img ng-src="{{x.avatar || 'img/noGoods.png'}}" alt="">
+					<div class="team-con">
+						<p>{{'100004'|T}}:{{x.nickname}}</p>
+						<p>{{'10000143'|T}}: {{x.uid}}</p>
+						<i>{{'10000144'|T}}: {{x.createtime*1000 | date:'yyyy-MM-dd HH:mm'}}</i>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>

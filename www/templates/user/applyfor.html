@@ -1,0 +1,102 @@
+<ion-view view-title="申请商家" hide-nav-bar="true" hide-back-button="true">
+	<!-- 新增收货地址 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'1000078'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div class="rec-act new-act new-act-inp">
+			<span style="color: red;">{{'10000145'|T}}</span>
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000029'|T}}： </span>
+			<input type="text" style="text-align: right" placeholder="{{'1000030'|T}}" ng-model="applyInfo.username">
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'10000146'|T}}： </span>
+			<input type="mobile" style="text-align: right" placeholder="{{'10000147'|T}}" ng-model="applyInfo.mobile">
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000079'|T}}： </span>
+			<input type="text" style="text-align: right" placeholder="{{'1000080'|T}}" ng-model="applyInfo.shopPerUid">
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000081'|T}}： </span>
+			<input type="text" style="text-align: right" placeholder="{{'1000082'|T}}" ng-model="applyInfo.shoptitle">
+		</div>
+		<!--<div class="rec-act new-act new-act-inp" ng-click="applyshow('cid')">-->
+			<!--<span>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类： </span>-->
+			<!--<span>{{shopType.cid||'请选择'}}<i class="iconfont icon-right"></i></span>-->
+		<!--</div>-->
+
+		<div class="rec-act new-act new-act-inp" ng-click="applyshow('shopType')">
+			<span>{{'1000083'|T}}： </span>
+			<span>{{shopType.shopType||'1000084'|T}}<i class="iconfont icon-right"></i></span>
+			<!--<input type="text" style="text-align: right" placeholder="请输入商家类型" ng-model="applyInfo.shopType">-->
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'10000148'|T}}： </span>
+			<input type="text" style="text-align: right" placeholder="{{'1000085'|T}}：00:00-23:59" ng-model="applyInfo.shopTime">
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000086'|T}}： </span>
+			<input type="text" style="text-align: right" placeholder="{{'1000087'|T}}" ng-model="applyInfo.description">
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000088'|T}}： </span>
+			<input type="text" style="text-align: right" placeholder="{{'1000089'|T}}" ng-model="applyInfo.content">
+		</div>
+		<div class="rec-act new-act new-act-inp" ng-click="areaShow()">
+			<span>{{'1000020'|T}}:</span>
+			<span>{{applyInfo.birth || '1000022'|T}}<i class="iconfont icon-right"></i></span>
+			<!--<span class="new-icon"></span>-->
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000023'|T}}:</span>
+			<input type="text" style="text-align: right" placeholder="{{'1000024'|T}}" ng-model="applyInfo.address">
+		</div>
+		<div class="ind-tuijian">
+			<div class="ind-tuijian-item" style="border:none">
+				<div class="ret-send">
+					<span style="text-align: center">{{'1000090'|T}}</span>
+					<div class="eva-photo">
+						<img style="width: 100%;" class="upload idCardThumbA" ng-click="uploadAvatar('idCardThumbA')" ng-src="{{applyInfo.idCardThumbA||'img/1.png'}}" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="ind-tuijian-item" style="border:none">
+				<div class="ret-send">
+					<span style="text-align: center">{{'1000091'|T}}</span>
+					<div class="eva-photo">
+						<img style="width: 100%;" class="upload idCardThumbB" ng-click="uploadAvatar('idCardThumbB')" ng-src="{{applyInfo.idCardThumbB||'img/1.png'}}" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="ind-tuijian-item" style="border:none">
+				<div class="ret-send">
+					<span style="text-align: center">{{'1000092'|T}}</span>
+					<div class="eva-photo">
+						<img style="width: 100%;" class="upload businessLicence" ng-click="uploadAvatar('businessLicence')" ng-src="{{applyInfo.businessLicence ||'img/1.png'}}" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="ind-tuijian-item" style="border:none">
+				<div class="ret-send">
+					<span style="text-align: center">{{'1000093'|T}}</span>
+					<div class="eva-photo">
+						<img style="width: 100%;" class="upload accordingToTheDoor" ng-click="uploadAvatar('accordingToTheDoor')" ng-src="{{applyInfo.accordingToTheDoor||'img/1.png'}}" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+	<ion-footer-bar>
+		<div class="pay-btn eva-btn" >
+			<button class="" ng-click="applySubmit()">{{'1000094'|T}}</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

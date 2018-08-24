@@ -1,0 +1,31 @@
+<!-- 益联快报 -->
+<ion-view view-title="鼎端快报" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">鼎端快报</h1>
+	</ion-header-bar>
+
+	<ion-content>
+		<div class="car-empty" ng-if="orderEmpty">
+			<div></div>
+			<span>什么也没有...</span>
+		</div>
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+
+		<ul class="news-list" ng-if="!orderEmpty">
+			<li class="news-item" ui-sref="offline.newsInfo({id: x.id})" ng-repeat="x in list">
+				<span class="text-overflow_1">{{x.title}}</span>
+				<span class="news-num">
+					<i class="icon ion-eye"></i>
+					<span>{{x.click}}</span>
+				</span>
+			</li>
+		</ul>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>
+

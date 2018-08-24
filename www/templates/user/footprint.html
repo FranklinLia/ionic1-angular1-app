@@ -1,0 +1,38 @@
+<!-- 我的足迹 -->
+<ion-view view-title="我的足迹" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="header-back bar-assertive">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">浏览记录</h1>
+	</ion-header-bar>
+	<ion-content>
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<div class="car-empty" ng-if="!footlist.list">
+			<div class="col-empty-bg"></div>
+			<span>这里还什么都没有哦~</span>
+		</div>
+		<div class="cla-con">
+			<ul class="col-tabs-list">
+				<li class="foo-tab-item" ng-repeat="list in footlist.list" >
+					<div class="ord-detail col-details">
+						<div class="ord-left col-right foo-right">
+							<img ng-src="{{list.thumb}}" alt="" >
+							<div class="ord-good-det">
+								<!--<p>{{list.goodsName}} <span class="ml8"> 包邮</span></p>-->
+								<p class="text-overflow_2">{{list.goodsName}}</p>
+								<span class="foo-item-bot">
+									<span class="col-price">${{list.spe_price}}</span>
+									<!--<span class="foo-collect"></span>-->
+									<i ng-click="clearfoot(list.id)" style="font-size: 20px;" class="iconfont icon-delete"></i>
+								</span>
+								<span>{{list.createtime*1000|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

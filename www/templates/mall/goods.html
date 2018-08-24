@@ -1,0 +1,170 @@
+<ion-view view-title="商品详情" hide-nav-bar="true" hide-back-button="true">
+	<!-- 商品详情 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<div class="pro-head">
+			<ul class="pro-nav">
+				<li ng-class="{'pro-active': hnav == selectNav}" ng-click='active(hnav)' ng-repeat="hnav in hnavs">{{hnav}}</li>
+			</ul>
+		</div>
+		<div class="buttons" style="padding-right: 8px" ng-click="myVar = !myVar">
+			<button class="button ion-more button-clear" style="font-size: 20px;"></button>
+		</div>
+		<div class="floatMenu" ng-if="myVar">
+			<span class="triangle-up"></span>
+			<ul>
+				<li ui-sref="tab.home"><span>{{'10000101'|T}}</span></li>
+				<li ui-sref="tab.cart"><span>{{'1000095'|T}}</span></li>
+				<li ui-sref="tab.my"><span>{{'100001'|T}}</span></li>
+			</ul>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<!-- 内容 -->
+		<div ng-if="selectNav == '商品'">
+		<div class="cla-con">
+			<!-- 商品详情轮播 -->
+			<ion-slide-box class="pro-banner" show-pager= {{isShowPage}} does-continue="true" auto-play="true" pagination-type= "fraction">
+				<ion-slide ng-repeat="pic in goods.thumbs">
+					<a href="javascript:">
+						<img src="{{pic || 'img/noGoods.png'}}" alt="" width="100%">
+					</a>
+				</ion-slide>
+			</ion-slide-box>
+			<div ng-if="isShowPic">
+				<img src='img/noGoods_h.jpg' alt="" width="100%">
+			</div>
+			<!-- 商品介绍 -->
+			<div class="pro-introduce">
+				<p class="text-overflow_2">{{goods.goodsName}}</p>
+				<span class="pro-pri">$<span  class="pro-price">{{goods.spe_price || '0.00'}}</span>
+					<!--<span class="pro-oldpri">${{goods.marketprice || '0.00'}}</span>-->
+					<span class="bean" ng-if="goods.selfRebate">赠送{{goods.selfRebate}}个D扣券</span>
+				</span>
+				<div class="pro-int-bot">
+					<span class="express" ng-if="goods.freeDelivery == 1">{{'10000113'|T}}</span>
+					<span class="express" ng-if="goods.freeDelivery != 1">{{'10000167'|T}}</span>
+					<span class="pro-sell">{{'10000115'|T}}：{{goods.monthSalesNum || '0' | priceReset}}{{'10000168'|T}}</span>
+					<span class="pro-addr">{{goods.shopInfo.birthInfo}}</span>
+				</div>
+			</div>
+			<div class="pro-int-bot pro-back">
+				<span class="express">{{'10000116'|T}}</span>
+				<span class="pro-sell">{{'10000117'|T}}</span>
+				<span class="pro-addr">{{'10000118'|T}}</span>
+			</div>
+		</div>
+		<!-- 商品评价 -->
+		<div class="pro-evaluate">
+			<div class="pro-eva-tit">
+				<span class="pro-eva-title">{{'10000119'|T}}<span>({{goods.bis_count || '0'}})</span></span>
+				<span class="pro-eva-more" ng-click="active('评论')">{{'10000120'|T}}</span>
+			</div>
+			<div class="pro-eva-item" ng-if="goods.bis_count >= 1">
+				<div class="pro-eva-con flex" >
+					<img ng-src="{{goods.bis[0].avatar}}" alt="">
+					<div class="pro-eva-rig flex_1">
+						  <div class="pro-eva-inf flex">
+							<p class="flex_1">{{goods.bis[0].nickname}}</p>
+							<span class="pro-eva-time">{{goods.bis[0].createtime}}</span>
+						  </div>
+						<p>{{goods.bis[0].info}}</p>
+					</div>
+				</div>
+				<div class="pro-picarea">
+					<div class="pro-eva-img" ng-repeat="img in goods.bis[0].thumbs"><img ng-src="{{img}}" alt=""></div>
+				</div>
+			</div>
+		</div>
+		<!-- 店铺信息 -->
+		<div class="pro-store">
+			<div class="pro-store-tit">
+				<div class="pro-store-lt">
+					<img ng-src="{{goods.shopInfo.logo || 'img/noGoods.png'}}" alt="">
+					<span>{{goods.shopInfo.username}}</span>
+				</div>
+				<div class="pro-store-rt" ng-click="shoucangShop()" ng-if="goods.isCare == 0"><span><i class="ion-ios-plus-empty"></i>{{'10000110'|T}}</span></div>
+				<div class="pro-store-rt" ng-click="shoucangShop()" ng-if="goods.isCare != 0"><span><i class="ion-ios-plus-empty"></i>{{'10000110'|T}}ed</span></div>
+			</div>
+			<ul class="pro-stinf">
+				<li class="pro-sitem">
+					<span class="pro-snum">{{goods.shopInfo.care | priceReset}}</span>
+					<span>{{'10000121'|T}}</span>
+				</li>
+				<li class="pro-sitem">
+					<span class="pro-snum">{{goods.shopGoodsNums}}</span>
+					<span>{{'10000122'|T}}</span>
+				</li>
+				<li class="pro-sitem">
+					<span class="pro-snum">{{goods.sales | priceReset}}</span>
+					<span>{{'10000123'|T}}</span>
+				</li>
+			</ul>
+			<div class="pro-sbtn">
+				<button ui-sref="mall.shop({spid:goods.spid})">{{'10000124'|T}}</button>
+				<button ui-sref="mall.shop({spid:goods.spid})">{{'10000125'|T}}</button>
+			</div>
+		</div>
+		<!-- 详情 -->
+		<div class="pro-details">
+			<div class="pro-det-tit">
+				<span class="pro-line"></span>
+				<span class="pro-det-font">{{'10000106'|T}}</span>
+				<span class="pro-line"></span>
+			</div>
+			<div ng-bind-html="goods.info"></div>
+		</div>
+
+		</div>
+		<div ng-if="selectNav == '详情'" ng-bind-html="goods.info"></div>
+		<div ng-if="selectNav == '评论'" >
+			<div class="car-empty ord-empty" ng-if="goods.bis_count < 1">
+				<div class="ord-empty-bg"></div>
+				<span>{{'10000197'|T}}</span>
+			</div>
+			<!--<div class="common-empty" ng-if="goods.bis_count < 1">这个商品目前还没有人评论，快点抢沙发吧！</div>-->
+			<div ng-repeat="b in goods.bis" class="pro-evaluate" style="padding: 10px 15px;">
+				<div class="pro-eva-con flex" >
+					<img ng-src="{{b.avatar}}" alt="">
+					<div class="pro-eva-rig flex_1">
+						<div class="pro-eva-inf flex">
+							<p class="flex_1">{{b.nickname}}</p>
+							<span class="pro-eva-time">{{b.createtime}}</span>
+						</div>
+						<p>{{b.info}}</p>
+					</div>
+				</div>
+				<div class="pro-picarea">
+					<div class="pro-eva-img" ng-repeat="img in b.thumbs"><img ng-src="{{img}}" alt=""></div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	<ion-footer-bar>
+		<!-- 底部导航 -->
+		<div class="pro-foot">
+			<ul class="pro-foot-left">
+				<li>
+					<a href="tel: {{goods.shopInfo.tel}} == '' ? '#' : {{goods.shopInfo.tel}}" class="kefu">
+						<i class="iconfont icon-service"></i>
+						<span>{{'10000108'|T}}</span>
+					</a>
+				</li>
+				<li ui-sref="mall.shop({spid:goods.spid})">
+					<i class="iconfont icon-shop"></i>
+					<span>{{'10000109'|T}}</span>
+				</li>
+				<li ng-click="shoucangGoods()">
+					<i class="iconfont icon-like" ng-class="{'active':goods.isLike != 0}"></i>
+					<span>{{'10000110'|T}}</span>
+				</li>
+			</ul>
+			<div class="pro-foot-right">
+				<button class="pro-cart-add" ng-click="buyAddCartShow()" ng-if="goods.module!='虚拟' && goods.task_goods != 1">{{'10000111'|T}}</button>
+				<button class="pro-buy" ng-click="buyInterimShow()">{{'10000112'|T}}</button>
+			</div>
+		</div>
+	</ion-footer-bar>
+</ion-view>

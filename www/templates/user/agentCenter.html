@@ -1,0 +1,40 @@
+<ion-view view-title="代理中心" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back" style="border-bottom: none;">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">代理中心</h1>
+	</ion-header-bar>
+	<ion-content>
+		<div class="agent-top">
+			<span class="agent-sum">
+				累计佣金: {{agent.accumulatedCommission}}元
+			</span>
+			<div class="agent-top-det">
+				<p ng-if="agent.birthCity != ''">地区代理: {{agent.birthCity}}</p>
+				<p ng-if="agent.channelName != ''">渠道代理:{{agent.channelName}}</p>
+				<span>可提现佣金（元）</span>
+				<div class="agent-top-btn">
+					<h3>{{agent.credit3}}</h3>
+					<button ui-sref="user.withdrawals">提现</button>
+				</div>
+			</div>
+		</div>
+		<ul class="agent-center">
+			<li class="agent-item" ui-sref="user.commissions">
+				<img src="img/new/money.png" alt="">
+				<p>佣金明细</p>
+				<span><i>{{agent.accumulatedCommission}}</i>元</span>
+			</li>
+			<li class="agent-item" ui-sref="user.myTeam">
+				<img src="img/new/team.png" alt="">
+				<p>我的团队</p>
+				<span><i>{{agent.countTeamNum}}</i>人</span>
+			</li>
+			<li class="agent-item" ui-sref="user.qrcode">
+				<img src="img/new/myQrcode.png" alt="">
+				<p>我的二维码</p>
+			</li>
+		</ul>
+	</ion-content>
+</ion-view>

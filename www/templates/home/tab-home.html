@@ -1,0 +1,86 @@
+<!-- 首页 -->
+<ion-view title="首页" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back" >
+		<div class="ydgy-header" style="padding: 5px 10px;">
+			<div class="top flex">
+				<img src="img/logo.png" alt="" width="40px" style="margin-top: 9px;">
+				<div class="flex_1 search" ui-sref="mall.search({type:'goods'})">
+					<i class="iconfont icon-search" ></i>
+					<input type="text" placeholder="{{'10000159'|T}}" ng-model="keywords" disabled style="width: 72%;">
+				</div>
+				<select class="language-switching" ng-controller="LanguageSwitchingCtrl" ng-model="cur_lang" ng-change="switching(cur_lang)">
+				    <option value="en">English</option>
+				    <option value="cn">简体中文</option>
+			    </select>
+			</div>
+		</div>
+	</ion-header-bar>
+	<ion-content class="mar-bot" scroll="true" on-scroll="onScroll()">
+		<ion-refresher pulling-text="{{'10000161'|T}}..." on-refresh="doRefresh()"></ion-refresher>
+		<!-- 首页轮播 -->
+		<ion-slide-box does-continue="true" auto-play="true" class="ind-banner">
+			<ion-slide ng-repeat="slide in focuslListData">
+				<a ng-click="toUrl(slide.id,'slide')">
+					<img ng-src="{{slide.thumb || 'img/noGoods_h.jpg'}}" alt="" width="100%">
+				</a>
+			</ion-slide>
+		</ion-slide-box>
+		<div ng-if="isShowPic">
+			<img src='img/noGoods_h.jpg' alt="" width="100%">
+		</div>
+		<!-- 商品分类 -->
+		<ion-slide-box show-pager={{isShowPage}} delegate-handle="slideNav" class="s_mid-nav">
+			<ion-slide ng-repeat="listOut in navList track by $index">
+				<ul class="ind-fenlei">
+					<li class="ind-fenleiItem" ng-repeat="nav in listOut" ng-click="toUrl(nav.id)">
+						<img ng-src="{{nav.thumb || 'img/noGoods.png'}}" width="42px">
+						<p class="text-overflow_1">{{nav.title}}</p>
+					</li>
+				</ul>
+			</ion-slide>
+		</ion-slide-box>
+		<!-- 热门系列 -->
+		<div class="ind-hotListTit">
+			<!-- <img src="img/new/hot.png"> -->
+			<p>{{'10000102'|T}}</p>
+		</div>
+		<div class="ind-hot-list">
+			<ion-scroll class="ind-bg" direction="x" scrollbar-x="false">
+				<div class="ind-hotItem" ng-repeat="goods in hotGoods">
+					<a ui-sref="mall.goods({id:goods.id})">
+						<img ng-src="{{goods.thumb || 'img/noGoods.png'}}" width="100%">
+						<p class="text-overflow_1">{{goods.goodsName}}</p>
+					</a>
+				</div>
+			</ion-scroll>
+		</div>
+		<!-- 发现好店 -->
+		<div ng-bind-html="content1"></div>
+		<!-- 爱生活 -->
+		<div ng-bind-html="content2"></div>
+		<div ng-bind-html="content"></div>
+		<!-- 为您推荐 -->
+		<div class="ind-hotListTit nomargTop">
+			<!-- <img src="img/new/tuijian.png"> -->
+			<p>{{'1000097'|T}}</p>
+			<img class="ind-icon-more" src="img/imgs/jiantou-right.png" ui-sref="mall.list">
+		</div>
+		<div class="ind-tuijian">
+			<div class="ind-tuijian-item" ng-repeat="goods in moreGoods" ui-sref="mall.goods({id:goods.id})">
+				<img ng-src="{{goods.thumb || 'img/noGoods.png'}}" alt="" width="100%">
+				<div class="ind-tuijian-con">
+					<p class="ind-tuijian-tit text-overflow_2">{{goods.goodsName}}</p>
+					<div class="flex">
+						<p class="price flex_1">${{goods.spe_price | priceReset}}</p>
+						<span class="al_sale">{{'1000098'|T}}<label>{{goods.sales}}</label></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="s_com_btm" ng-if="isShowBtm"><p></p><span>{{'10000160'|T}}</span><p></p></div>
+		<ion-infinite-scroll ng-if="noMoreGoods"  on-infinite="loadMoreGoods()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>
+
+
+

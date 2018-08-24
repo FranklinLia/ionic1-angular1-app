@@ -1,0 +1,12 @@
+<div id="address-model">
+	<div class="address-tit">
+		<h3>{{'1000020'|T}}</h3>
+		<i class="iconfont icon-close" ng-click="popover.hide()"></i>
+		<span>{{'1000022'|T}}</span>
+	</div>
+	<ion-scroll class="address-det" scrollbar-y="false">
+		<ul class="address-list">
+			<li class="address-item" ng-repeat="(x, y) in areaList" ng-click="selectArea(x)">{{y.title || y}}</li>
+		</ul>
+	</ion-scroll>
+</div>

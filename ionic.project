@@ -1,0 +1,10 @@
+{
+  "name": "dapp",
+  "app_id": "",
+  "proxies": [
+          {
+            "path": "/api",
+            "proxyUrl": "http://mall.elememall.com"
+          }
+        ]
+}

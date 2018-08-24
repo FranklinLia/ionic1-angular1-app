@@ -1,0 +1,24 @@
+<ion-view view-title="商品列表" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back flex" style="padding: 7px 5px;">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<div class="cata-search flex_1">
+			<i class="iconfont icon-search"></i>
+			<input type="text" class='flex' placeholder="{{'10000157'|T}}" ng-model="keywords" ng-enter="search()" ng-if="type == 'shops'">
+			<input type="text" class='flex' placeholder="{{'10000158'|T}}" ng-model="keywords" ng-enter="search()" ng-if="type != 'shops'">
+		</div>
+		<div class="buttons">
+			<button class="button button-clear" style="font-size: 14px;" ng-click="search(type, keywords)">{{'10000155'|T}}</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="sea-con">
+		<div class="sea-details">
+			<h3>{{'10000156'|T}}</h3>
+			<ul class="sea-list">
+				<li class="sea-item" ng-repeat="x in info" ng-click="search(type,x.keywords)">{{x.keywords}}</li>
+			</ul>
+		</div>
+	</ion-content>
+</ion-view>
+

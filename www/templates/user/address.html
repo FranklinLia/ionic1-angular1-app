@@ -1,0 +1,72 @@
+<ion-view view-title="收货地址" hide-nav-bar="true" hide-back-button="true">
+	<!-- 收货地址 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'1000016'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<ul ng-if="pageInfo.code != 301">
+			<li ng-repeat="x in pageInfo.data"  ng-class=" x.isdefault !=0 ? 'active' : '' " style="margin-bottom: 10px;">
+				<div style="padding-bottom: 4px;"  ng-click="defaultAdd(x.id,$index)">
+					<div class="rec-act" style="display: block">
+						<i class="iconfont icon-geren2"></i>
+						<span>{{'1000017'|T}}：{{x.username}}</span>
+					</div>
+					<div class="rec-act" style="display: block;margin-top: 0;">
+						<i class="iconfont icon-location"></i>
+						<span>{{'1000020'|T}}：{{x.province}}-{{x.city}}-{{x.district}}-{{x.address}}</span>
+					</div>
+				</div>
+
+				<div class="rec-act" style="margin-top: 1px;">
+					<span class="rec-left" ng-click="defaultAdd(x.id,$index)">
+						<label class="checkbox car-ckbox">
+							<input type="checkbox" ng-checked="x.isdefault == 1">
+						</label>
+						<!--<ion-checkbox></ion-checkbox>-->
+						<span>{{'10000127'|T}}</span>
+					</span>
+					<span class="rec-right">
+						<span class="rec-rl"  ng-click="_update(x.id,$event)">{{'10000128'|T}}</span>
+						<span class="rec-del" ng-click="removeAddress(x.id,$event)">{{'10000129'|T}}</span>
+					</span>
+				</div>
+			</li>
+		</ul>
+		<div ng-if="pageInfo.code == 301">
+			<!--<ion-header-bar>-->
+				<!--<div class="ord-head">-->
+					<!--<a ng-if="pageInfo.code != 301" btn-back class="cla-back"></a>-->
+					<!--<span>收货地址</span>-->
+				<!--</div>-->
+			<!--</ion-header-bar>-->
+			<div class="rec-act new-act new-act-inp">
+				<span>{{'1000017'|T}} :</span>
+				<input type="text" placeholder="{{'1000018'|T}}" ng-model="userInfo.name">
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>{{'1000072'|T}} :</span>
+				<input type="text" placeholder="{{'1000019'|T}}" ng-model="userInfo.mobile" maxlength="11">
+			</div>
+			<div class="rec-act new-act new-act-inp" ng-click="areaShow()">
+				<span>{{'1000020'|T}} :</span>
+				<span>{{userInfo.area || '1000021'|T}}<i class="iconfont icon-right"></i></span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>{{'1000023'|T}} :</span>
+				<input type="text" placeholder="{{'1000024'|T}}" ng-model="userInfo.infoAddress">
+			</div>
+		</div>
+	</ion-content>
+	<ion-footer-bar class="no-bgc">
+		<div ng-if="pageInfo.code == 301" class="pay-btn rec-btn" style="overflow: hidden">
+			<button style="margin: 0;" ng-click="modify()"><span>{{'1000025'|T}}</span></button>
+		</div>
+		<div ng-if="pageInfo.code != 301" class="pay-btn rec-btn" style="overflow: hidden">
+			<button style="margin: 0;" ui-sref="user.addAddress({'goodsInfo': goodsInfo,'type': type})"><i style="margin-right: 5px" class="iconfont icon-add"></i><span>{{'10000126'|T}}</span></button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

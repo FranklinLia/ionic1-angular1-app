@@ -1,0 +1,77 @@
+<ion-view view-title="购物车" hide-nav-bar="true" hide-back-button="true" hide-tabs>
+	<!-- 购物车 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<h1 class="title">{{'1000095'|T}}</h1>
+	</ion-header-bar>
+	<ion-content>
+		<div class="car-empty" ng-if="!checkAuth">
+			<div></div>
+			<span>{{'10000153'|T}}</span>
+			<button class="go-btn" ui-sref="auth.login">{{'10000154'|T}}</button>
+		</div>
+		<!-- 购物车为空时 -->
+		<div ng-if="checkAuth">
+			<div class="car-empty" ng-if="orderEmpty">
+			  <div></div>
+			  <span>{{'1000096'|T}}</span>
+			</div>
+			<!-- 不为空时 -->
+			<div ng-if="!orderEmpty">
+				<div class="s_cart-info" ng-repeat="(x,y) in pageInfo.data.cartList">
+					<div class="car-store">
+						<i class="round" ng-class="y.ischeck-0 ? 'ion-ios-checkmark':'ion-ios-circle-outline'" ng-click="otherCheck('shops',x)"></i>
+						<i class="iconfont icon-shop" style="font-size: 22px;padding: 0 5px 0 15px;color: #666;"></i>
+						<span class="car-store-name" style="background-size: 13%">{{y.shopName}}</span>
+						<span class="car-jiantou-rig"></span>
+					</div>
+					<div class="ord-detail car-detail" ng-repeat="z in y.goods">
+						<i class="round" ng-class="z.ischeck-0 ? 'ion-ios-checkmark' : 'ion-ios-circle-outline'" ng-click="otherCheck('goods',x,z.id,z.ischeck-0)"></i>
+						<div class="ord-left car-right">
+							<img ng-src="{{z.thumb}}" alt="">
+							<div class="ord-good-det car-good-det">
+								<p ng-bind="z.goodsName" class="text-overflow_2"></p>
+								<span class="car-price">${{z.goodsPrice}}</span>
+								<span ng-if="z.field">{{'10000152'|T}}：{{z.field.field_1}}{{z.field.field_2}}</span>
+								<span class="car-con-bot">
+									<span class="car-num">
+										<span class="car-del" ng-click="opNum(z.id,x,1)">-</span>
+										<input class="car-number" type="text" ng-model="z.goodsNum" >
+										<span class="car-add" ng-click="opNum(z.id,x,2)">+</span>
+									</span>
+									<span style="padding-left: 10px;" ng-click="del(z.id)"><i class="iconfont icon-delete"></i></span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 为您推荐 -->
+		<div class="ind-hotListTit nomargTop" ng-if="goodsShow">
+			<!-- <img src="img/new/tuijian.png"> -->
+			<p>{{'1000097'|T}}</p>
+		</div>
+		<div class="ind-tuijian" ng-if="goodsShow">
+			<div class="ind-tuijian-item" ng-repeat="goods in moreGoods" ui-sref="mall.goods({id:goods.id})">
+				<img ng-src="{{goods.thumb || 'img/noGoods.png'}}" alt="" width="100%">
+				<div class="ind-tuijian-con">
+					<p class="ind-tuijian-tit text-overflow_2">{{goods.goodsName}}</p>
+					<div class="flex">
+						<p class="price flex_1">${{goods.spe_price | priceReset}}</p>
+						<span class="al_sale">{{'1000098'|T}}<label>{{goods.sales}}</label></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="height: 50px;"></div>
+	</ion-content>
+	<!-- 全选 -->
+	<ion-footer-bar class="car-check-bot" ng-if="!orderEmpty && checkAuth">
+		<div class="car-all-sum s_cart-info">
+			<i class="round" ng-class="pageInfo.data.isCheck-0?'ion-ios-checkmark':'ion-ios-circle-outline'"  ng-click="allCheck()"></i>
+			<span style="padding: 0 5px">{{'10000149'|T}}</span>
+			<span>{{'10000150'|T}}：${{pageInfo.data.countPrice | number: 2}}</span>
+		</div>
+		<button class="car-allbtn" ng-click="go()">{{'10000151'|T}}</button>
+	</ion-footer-bar>
+</ion-view>

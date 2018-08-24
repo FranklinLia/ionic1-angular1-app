@@ -1,0 +1,85 @@
+<ion-view view-title="确认订单" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000187'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<!-- 用户信息 -->
+		<div class="con-user" ui-sref="user.address({goodsInfo: checkoutPara,type: type})">
+			<div class="con-user-left">
+				<div class="con-user-inf">
+					<span>{{checkout.address.username}}</span>
+					<span class="con-user-num" ng-if="checkout.address.mobile">{{checkout.address.mobile.substr(0, 4) + '****'+ checkout.address.mobile.substr(8)}}</span>
+				</div>
+				<span class="con-user-addr" ng-if="checkout.address == ''"><i class="iconfont icon-location"></i>{{'10000193'|T}}</span>
+				<span class="con-user-addr" ng-if="checkout.address != ''"><i class="iconfont icon-location"></i>{{checkout.address.province}}{{checkout.address.city}}{{checkout.address.district}}{{checkout.address.town}}{{checkout.address.address}}</span>
+			</div>
+			<span class="con-user-icon"></span>
+		</div>
+		<!-- 订单信息 -->
+		<div  ng-repeat="(shopName, goodsList) in checkout.cartList">
+			<div class="ord-detail" ng-repeat="item in goodsList">
+				<div class="ord-left con-left"  >
+					<img class="con-left-img" ng-src="{{item.thumb || 'img/noGoods.png'}}" alt="">
+					<div class="ord-good-det">
+						<p class="text-overflow_1">{{item.goodsName}}</p>
+						<span ng-if="item.fields.field_1 || item.fields.field_2">{{'10000152'|T}}：{{item.fields.field_1}}---{{item.fields.field_2}}</span>
+						<span class="con-good-bot">
+                        <span class="con-price">${{item.goodsPrice}}</span>
+                        <span>x{{item.goodsNum}}</span>
+                    </span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--<div class="con-buy-num">-->
+			<!--<span>购买数量</span>-->
+			<!--<span class="car-num">-->
+				<!--<span class="car-del">-</span>-->
+				<!--<input class="car-number" type="text" value="1">-->
+				<!--<span class="car-add">+</span>-->
+			<!--</span>-->
+		<!--</div>-->
+		<!--<div class="con-buy-num">-->
+			<!--<span>运费</span>-->
+			<!--<span>快递 : {{checkout.postageMoney | number: 2}}</span>-->
+		<!--</div>-->
+		<!--<div class="con-buy-num">-->
+			<!--<span>优惠券</span>-->
+			<!--<span class="con-coupon">无可用</span>-->
+		<!--</div>-->
+		<!-- 买家留言 -->
+		<div class="con-liuyan">
+			<textarea rows="3" cols="20" placeholder="{{'10000188'|T}}:{{'10000189'|T}}" ng-model="pay.note"></textarea>
+		</div>
+		<div class="con-bot">
+			<div class="con-bot-item">
+				<span>{{'10000190'|T}}</span>
+				<span class="con-bot-price">${{checkout.goodsPrice || 0}}</span>
+			</div>
+			<div class="con-bot-item">
+				<p >{{'10000191'|T}}</p>
+				<span class="con-bot-price">
+                    +${{checkout.postageMoney || 0 | number: 2}}
+                </span>
+			</div>
+			<!--<div class="con-bot-item">-->
+				<!--<span>退换无忧</span>-->
+				<!--<span class="con-bot-price">-->
+                    <!--+$0.00-->
+                <!--</span>-->
+			<!--</div>-->
+		</div>
+	</ion-content>
+	<ion-footer-bar>
+		<!-- 底部导航 -->
+		<div class="con-foot">
+			<span>{{'10000150'|T}} : ${{checkout.countPrice || 0}}</span>
+			<button ng-click="toPay()" style="line-height:44px">{{'10000192'|T}}</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

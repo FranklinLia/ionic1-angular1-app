@@ -1,0 +1,23 @@
+<ion-view view-title="商家二维码" hide-nav-bar="true">
+	<ion-header-bar>
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" style="color: #000;padding-left: 6px;" btn-back></button>
+		</div>
+		<h1 class="title">商家二维码</h1>
+	</ion-header-bar>
+	<ion-content>
+		<div class="qr-header">
+			<div class="my-qrcode padding">
+				<img class="flex_1" ng-src="{{QRcode.user.avatar || 'img/avatar.jpg'}}">
+			</div>
+			<h5>{{QRcode.shopName}}</h5>
+			<div class="share-qcode">
+				<img ng-src="{{QRcode}}" />
+			</div>
+		</div>
+
+		<div style="height: 10px; background-color: #f3f3f3;"></div>
+
+	</ion-content>
+</ion-view>
+

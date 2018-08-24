@@ -1,0 +1,66 @@
+<!-- 退货申请 -->
+<ion-view view-title="退货申请" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000253'|T}}</h1>
+	</ion-header-bar>
+	<ion-content>
+		<ul>
+			<li  ng-repeat="(k,x) in returnList.orderInfo.goodsInfo" style="margin-bottom: 10px">
+				<div class="ord-detail ret-details">
+					<div class="ord-left con-left">
+						<i class="iconfont icon-roundcheckfill" ng-class="x.types  ? 'checked': ''" ng-click="isCheck(k)"></i>
+						<img class="con-left-img" ng-src="{{x.thumb}}" alt="" style="vertical-align: middle;">
+						<div class="ord-good-det">
+							<p class="text-overflow_1">{{x.goodsName}}</p>
+							<!--<span>颜色 : 明星黑壳 怀表</span>-->
+							<span class="con-good-bot">
+								<span class="con-price">${{x.goodsPrice}}</span>
+								<span>x{{x.goodsNum}}</span>
+							</span>
+						</div>
+					</div>
+				</div>
+
+			</li>
+		</ul>
+		<div class="ret-det">
+			<div class="ret-item">
+				<span>{{'10000254'|T}}</span>
+				<span class="shopInfo-more" ng-click="reasonShow('reason')"><span>{{retof.reason[popnum.reason]}}</span><i class="icon ion-ios-arrow-right"></i></span>
+			</div>
+			<div class="ret-item">
+				<span>{{'10000255'|T}}</span>
+				<span class="shopInfo-more" ng-click="reasonShow('type')"><span>{{retof.type[popnum.type]}}</span><i class="icon ion-ios-arrow-right"></i></span>
+			</div>
+			<div class="ret-item">
+				<span>{{'10000256'|T}} : </span><span class="ret-price">${{returnList.allPrice}}</span>
+			</div>
+		</div>
+		<div class="ret-explain">
+			<span>{{'10000257'|T}} ： </span>
+			<input type="text" placeholder="{{'10000188'|T}}" ng-model="returnInfo.goodsInfo">
+		</div>
+		<div class="ret-send">
+			<span>{{'10000258'|T}}</span>
+			<div class="eva-photo">
+				<img class="img" ng-src="{{img}}" ng-repeat="(i, img) in returnInfo['images'] track by $index" ng-click="returnInfo['images'].splice(i, 1)">
+				<img class="upload" ng-click="uploadImg()" src="img/imgs/ret-send.png" alt="" ng-if="returnInfo['images'].length < 5">
+			</div>
+
+		</div>
+		<!--<div class="eva-photo">-->
+			<!--<img class="img" ng-src="{{img}}" ng-repeat="(i, img) in returnInfo['images'] track by $index" ng-click="returnInfo['images'].splice(i, 1)">-->
+			<!--<img class="upload" ng-src="../img/photo-upload.png" alt="" ng-click="uploadImg()" ng-if="returnInfo['images'].length < 5">-->
+		<!--</div>-->
+	</ion-content>
+	<ion-footer-bar>
+		<button class="new-btn" ng-click="applyReturnGoods(retof.reason[popnum.reason])">{{'1000038'|T}}</button>
+	</ion-footer-bar>
+</ion-view>
+
+
+
+

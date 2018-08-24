@@ -1,0 +1,49 @@
+<!-- 我的余额 -->
+<ion-view view-title="城市服务商记录" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">城市合伙人记录</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<ion-refresher pulling-text="下拉刷新" refreshing-icon="" on-refresh="doRefresh()"></ion-refresher>
+		<div class="cx_remaining_cont">
+			<div class="car-empty" ng-if="orderEmpty">
+				<div class="col-empty-bg"></div>
+				<span>什么也没有...</span>
+			</div>
+			<div class="remin_list" ng-if="!orderEmpty">
+				<ul>
+					<li class="box-sizing" ng-repeat="x in info">
+						<div class="remin_text">
+							<span class="list_fl">用户&nbsp;&nbsp;I&nbsp;&nbsp;D</span>
+							<span class="list_fr">{{x.uid}}</span>
+						</div>
+						<div class="remin_text">
+							<span class="list_fl">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间</span>
+							<span class="list_fr">{{x.createtime*1000 | date:'yyyy-MM-dd HH:mm'}}</span>
+						</div>
+						<div class="remin_text">
+							<span class="list_fl">订单编号</span>
+							<span class="list_fr">{{x.orderId}}</span>
+						</div>
+						<div class="remin_text">
+							<span class="list_fl">订单金额</span>
+							<span class="list_fr">{{x.orderPrice}}</span>
+						</div>
+						<div class="remin_text">
+							<span class="list_fl">返利金额</span>
+							<span class="list_fr">{{x.num}}</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>
+

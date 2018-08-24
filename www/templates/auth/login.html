@@ -1,0 +1,33 @@
+<ion-view view-title="{{'100002'|T}}" hide-nav-bar="true">
+	<ion-content class="sig-content log-content">
+		<div class="log-con">
+			<img ng-src="{{info||'img/imgs/reg-headimg.png'}}">
+			<button class="icon ion-ios-arrow-left button-clear" btn-back></button>
+			<div class="log-message">
+				<div class="common" style="line-height: 34px;position: relative;">
+					<span></span>
+					<input type="number" ng-model="login.mobile" placeholder="{{'10000136'|T}}">
+					<i style="font-size: 20px;color: #bbb;" class="ion-ios-arrow-right placeholder-icon" ng-if="mobileList.length == 0"></i>
+					<i style="font-size: 20px;color: #bbb;" ng-class="mobileType? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'" ng-if="mobileList.length > 0" ng-click="chooseType()"></i>
+					<div class="mobile" ng-if="mobileType">
+						<ul>
+							<li class="flex" ng-click="selectMobile(x)" ng-repeat="x in mobileList"><p class="flex_1">{{x}}</p></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="common pt10">
+					<span class="log-psd"></span>
+					<input type="password" ng-model="login.password" ng-enter="login()" placeholder="{{'10000137'|T}}">
+				</div>
+			</div>
+			<div class="pay-btn log-btn">
+				<button ng-click="login()">{{'10000154'|T}}</button>
+			</div>
+			<div class="log-bot">
+				<a ui-sref="auth.resetPsd" class="ps">{{'10000138'|T}}</a>
+				<a ui-sref="auth.register" class="zc">{{'10000139'|T}}</a>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

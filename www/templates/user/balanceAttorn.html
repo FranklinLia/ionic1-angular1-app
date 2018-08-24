@@ -1,0 +1,40 @@
+<!-- 余额转让 -->
+<ion-view view-title="余额转让" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000205'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div class="yd-donate-count real-count">
+			<ul>
+				<li class="flex">
+					<span class="flex_1">{{'10000206'|T}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<p class="assertive">{{info}}</p>
+				</li>
+				<li>
+					<label>{{'10000207'|T}}</label>
+					<input type="text" placeholder="{{'10000208'|T}}" ng-model="giveInfo.mobile">
+				</li>
+				<li>
+					<label>{{'10000209'|T}}</label>
+					<input type="text" placeholder="{{'10000210'|T}}" ng-model="giveInfo.giveNum">
+				</li>
+				<li>
+					<label>{{'10000211'|T}}</label>
+					<input type="text" placeholder="{{'10000212'|T}}" maxlength="9" ng-model="giveInfo.code">
+					<button class="button button-small button-assertive btn" ng-click="getCaptcha()" ng-disabled = 'getCaptchaSuccess'>
+						<span ng-if="!getCaptchaSuccess">{{'10000213'|T}}</span><span ng-if="getCaptchaSuccess">{{'10000133'|T}}{{reg.number}}s</span>
+					</button>
+				</li>
+			</ul>
+			<p class="give_pou">{{'10000214'|T}}</p>
+			<div class="padding sure-btn">
+				<button class="button button-block button-assertive" ng-click="submit()">{{'1000076'|T}}</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+

@@ -1,0 +1,75 @@
+<ion-view view-title="商家中心" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back" style="border-bottom: none">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">订单详情</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div class="orderDet-box">
+			<img src="img/imgs/images/orderDet-head_02.jpg" alt="">
+			<div class="orderDet-tit">
+				<span>{{orderDetail.orderStatusInfo}}</span>
+				<span class="orderDet-img orderDet-paied"></span>
+			</div>
+		</div>
+		<!-- 用户信息 -->
+		<div class="con-user-left orderDet-user">
+			<div class="con-user-inf">
+				<span>收货人：{{orderDetail.username}}</span>
+				<span class="con-user-num">{{orderDetail.mobile}}</span>
+			</div>
+			<span class="con-user-addr text-overflow_2">{{orderDetail.province}}-{{orderDetail.city}}-{{orderDetail.district}}{{orderDetail.towm}} {{orderDetail.address}}</span>
+		</div>
+
+		<!-- 订单信息 -->
+		<div>
+			<div class="car-store orderDet-store">
+				<span class="car-store-name"><i class="iconfont icon-shop"></i>{{orderDetail.shopName}}</span>
+				<span class="car-jiantou-rig" ui-sref="mall.shop"></span>
+			</div>
+			<div ng-repeat="goods in orderDetail.info" style="border-top: 1px solid #fff;">
+				<div class="ord-detail orderDet-detail" >
+					<div class="ord-left con-left">
+						<img class="con-left-img" ng-src="{{goods.thumb}}" alt="">
+						<div class="ord-good-det">
+							<p class="text-overflow_1">{{goods.goodsName}}</p>
+							<span ng-if="goods.goodsField != ''">规格：{{goods.goodsField}}</span>
+							<span class="con-good-bot">
+							<span class="con-price">${{goods.goodsPrice}}</span>
+							<span>x{{goods.goodsNum}}</span>
+						</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<div class="ord-sum">-->
+				<!--<button class="btn ord-del" ng-if="x.orderStatus == -3 && (x.payStatus == 1 || x.payType == 'delivery')" ng-click="cancleReturnGoods(x.orderSn)">取消退货</button>-->
+				<!--<button class="btn ord-del"  ng-if="x.orderStatus == 0 || x.orderStatus == 1" ui-sref="mall.return({orderSn:x.orderSn})">申请退换</button>-->
+				<!--<button class="btn ord-pay" ng-if="x.orderStatus == 2 && x.isBis != 1" ui-sref="mall.evaluate({orderSn: x.orderSn})">去评价</button>-->
+				<!--<button class="btn ord-pay"  ng-if="x.orderStatus == 1" ng-click="confirmGoods(x.orderSn)">确认收货</button>-->
+				<!--<button class="btn ord-pay"  ng-if="x.returnStatus == 2 && (x.payStatus == 1 || x.payType == 'delivery')" ui-sref="mall.returnInfo({orderSn:x.orderSn})">请输入退货物流信息</button>-->
+			<!--</div>-->
+			<div class="con-buy-num">
+				<span>运费<br />实付款（含运费）</span>
+				<span class="orderDet-buy-rig">
+				<span>${{orderDetail.postagePrice}}</span>
+				<span class="orderDet-red">${{orderDetail.payPrice}}</span>
+			</span>
+			</div>
+			<div class="con-buy-num">
+				<span>配送方式 : {{orderDetail.expressInfo.name || orderDetail.express || '未提供'}}</span>
+			</div>
+		</div>
+
+		<div class="con-buy-num">
+			<span>支付方式 : <span ng-if="orderDetail.payType == 'wechat'">微信支付</span><span ng-if="orderDetail.payType == 'alipay'">支付宝支付</span><span ng-if="orderDetail.payType == 'credit'">余额支付</span></span>
+		</div>
+
+		<div class="orderDet-mt5">
+			<span>订单编号 : {{orderDetail.orderId}}</span>
+			<span>下单时间 : {{orderDetail.createtime*1000 | date:'yyyy-MM-dd HH:mm'}}</span>
+		</div>
+	</ion-content>
+</ion-view>

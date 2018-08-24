@@ -1,0 +1,62 @@
+<ion-view view-title="商家中心" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">商家提现</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div>
+			<div class="rec-act new-act new-act-inp">
+				<span>可提现金额 :</span>
+				<span>${{info.moneyMonth}}</span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>提现最小金额 :</span>
+				<span>${{info.userShopInfo.withdrawMin}}</span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>提现整数倍 :</span>
+				<span>{{info.userShopInfo.withdrawBei}}</span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>商家负责人 :</span>
+				<input type="text"  ng-model="shopInfo.cname" placeholder="具有对该商家的最高管理权限">
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>姓  名 :</span>
+				<input type="text" ng-model="info.historyUser.uname" placeholder="请输入真实姓名">
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>联系电话 :</span>
+				<input type="text" ng-model="shopInfo.mobile" placeholder="请输入联系电话">
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>提现金额 :</span>
+				<input type="text" ng-model="info.money" placeholder="请输入提现金额">
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>提现方式 :</span>
+				<span ng-click="selectType()">{{info.withdrawTitle || '请选择'}}<i class="iconfont icon-right"></i></span>
+			</div>
+			<div class="rec-act new-act new-act-inp"  ng-if="info.withdrawType == '2'">
+				<span>开户行 :</span>
+				<span ng-click="selectType('bank')">{{info.cardType || '请选择'}}<i class="iconfont icon-right"></i></span>
+			</div>
+			<div class="rec-act new-act new-act-inp"  ng-if="info.withdrawType == '2'">
+				<span>开户行信息:</span>
+				<input type="text" placeholder="请输入开户行信息"  ng-model="info.historyUser.cardInfo">
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>账号 :</span>
+				<input type="text" placeholder="请输入账号" ng-model="info.historyUser.username">
+			</div>
+		</div>
+		<div class="pay-btn man-btn">
+			<button ng-click="withSure()">
+				<span>提现</span>
+			</button>
+		</div>
+	</ion-content>
+</ion-view>

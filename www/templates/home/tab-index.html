@@ -1,0 +1,89 @@
+<!-- 首页 -->
+<ion-view title="首页" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back" >
+		<div class="ydgy-header">
+			<div class="top flex">
+				<div class="tubiao" ng-click="openModal()" ng-cloak><span class="loc"><span class="text-overflow_1" ng-bind="curPosition.city || '定位'"></span><i class="iconfont icon-unfold"></i></span></div>
+				<div class="flex_1 search">
+					<i class="iconfont icon-search" ></i>
+					<input type="text" placeholder="搜索线下商家" ng-model="keywords">
+				</div>
+				<div class="buttons" style="margin-top: -2px;" ng-click="search(keywords)">
+					<button class="button button-clear" style="font-size: 16px;">搜索</button>
+				</div>
+			</div>
+		</div>
+	</ion-header-bar>
+	<!--</div>-->
+	<ion-content class="mar-bot">
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<!-- 首页轮播 -->
+		<ion-slide-box delegate-handle="slideimgs" does-continue="true" show-pager="true" auto-play="true">
+			<ion-slide ng-repeat="focus in focuslListData" ng-click="toUrl(focus.id, 'slide')">
+				<a href="javascript:"><img ng-src="{{focus.thumb}}" width="100%" class="banner-img"></a>
+			</ion-slide>
+		</ion-slide-box>
+		<div ng-if="isShowPic">
+			<img src='img/noGoods_h.jpg' alt="" width="100%">
+		</div>
+		<!-- 商品分类 -->
+		<ion-slide-box show-pager={{isShowPage}} delegate-handle="slideNav" class="s_mid-nav">
+			<ion-slide ng-repeat="listOut in navList track by $index">
+				<ul class="ind-fenlei">
+					<li class="ind-fenleiItem" ng-repeat="nav in listOut" ng-click="toUrl(nav.id)">
+						<img ng-src="{{nav.thumb  || 'img/noGoods.png'}}" width="42px">
+						<p class="text-overflow_1">{{nav.title}}</p>
+					</li>
+				</ul>
+			</ion-slide>
+		</ion-slide-box>
+
+		<!--新闻-->
+		<div class="user-award index-news flex" ng-if="awardNotice">
+			<span>鼎端<span class="index-red">快报</span><i style="font-size: 12px;color: #666;padding-left: 3px;">：</i></span>
+			<ul class="flex_1 oUl" id="oUl">
+				<li ng-repeat="each in awardNotice track by $index" ui-sref="offline.newsInfo({id: each.id})" class="text-overflow_1">{{each.title}}</li>
+			</ul>
+			<i class="more" ui-sref="offline.newsList">更多</i>
+		</div>
+		<!--附近商家-->
+		<div class="index-near">
+			<h3>附近商家</h3>
+			<span ui-sref="offline.shopList" style="background: url('../img/imgs/offline_right.png') 58px 4px no-repeat;background-size: 17%;">更多商家</span>
+		</div>
+		<div class="car-empty" ng-if="curPosition.status == 1">
+			<div></div>
+			<span>定位失败，请手动选择当前位置</span>
+		</div>
+		<div class="car-empty" ng-if="orderEmpty">
+			<div></div>
+			<span>什么也没有...</span>
+		</div>
+		<div class="ord-detail" ng-if="!orderEmpty" ng-repeat="goods in shopList" ui-sref="offline.shopInfo({spid:goods.id})">
+			<div class="ord-left con-left index-left" >
+				<img class="con-left-img"  ng-src="{{goods.logo || 'img/noGoods.png'}}" alt="">
+				<div class="ord-good-det">
+					<p class="text-overflow_1">{{goods.title}}</p>
+					<span class="con-good-bot">
+                        <span>{{goods.clicks}}人光临</span>
+                        <ul class="shop-star">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+                    </span>
+					<span class="con-good-bot">
+                        <span class="text-overflow_1" style="color: #5F5F5F;">{{goods.birthInfo}}</span>
+                        <span>{{goods.distance}}</span>
+                    </span>
+				</div>
+			</div>
+		</div>
+		<div class="s_com_btm" ng-if="isShowBtm"><p></p><span>我是有底线的</span><p></p></div>
+		<ion-infinite-scroll ng-if="noMore && curPosition.status != 1 " on-infinite="loadMoreGoods()" distance="1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>
+

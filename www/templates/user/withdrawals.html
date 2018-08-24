@@ -1,0 +1,67 @@
+<ion-view view-title="提现中心" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">提现中心</h1>
+		<div class="buttons" ui-sref="user.withRecords">
+			<button class="button iconfont icon-dingdan button-clear"></button>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<div>
+			<div class="rec-act new-act new-act-inp">
+				<span>现有佣金:</span>
+				<span>${{withdraw.credit3 || '0'}}</span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>商城提现最小额度:</span>
+				<span>${{withdraw.config.cashQuota  || '0'}}</span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>商城提现整数倍 :</span>
+				<span>{{withdraw.config.cashMultiple || '0'}}</span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>商城提现将收取{{withdraw.config.cashPercent || '0'}}%的手续费！</span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>商城提现滞留佣金{{withdraw.config.cashSurpluse || '0'}}%转余额！</span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>提现方式 :</span>
+				<span ng-click="selectType()">{{info.withTitle || '请选择'}}<i class="iconfont icon-right"></i></span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>提现金额:</span>
+				<input type="text" placeholder="请输入提现金额"  ng-model="info.money" >
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>姓  名 :</span>
+				<input type="text" placeholder="请输入真实姓名" ng-model="info.username">
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>联系电话 :</span>
+				<input type="text" placeholder="请输入联系电话" ng-model="info.mobile" >
+			</div>
+			<div class="rec-act new-act new-act-inp" ng-if="info.withType == 'bankCard'">
+				<span>银行卡号:</span>
+				<input type="text" placeholder="请输入银行卡号"  ng-model="info.card">
+			</div>
+			<div class="rec-act new-act new-act-inp" ng-if="info.withType == 'bankCard'">
+				<span>开户行 :</span>
+				<input type="text" placeholder="请输入开户行" ng-model="info.cardType">
+			</div>
+			<div class="rec-act new-act new-act-inp" ng-if="info.withType == 'alipay'">
+				<span>支付宝账号 :</span>
+				<input type="text" placeholder="请输入支付宝账号" ng-model="info.alipay">
+			</div>
+		</div>
+	</ion-content>
+	<ion-footer-bar class="no-bgc">
+		<div class="pay-btn rec-btn">
+			<button style="margin: 0;" ng-click="withSub()"><span>提交</span></button>
+		</div>
+	</ion-footer-bar>
+</ion-view>
+

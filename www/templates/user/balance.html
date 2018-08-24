@@ -1,0 +1,25 @@
+<!-- 我的余额 -->
+<ion-view view-title="我的财富" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">我的财富</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div class="rec-act mb5 bal-act"  ui-sref="user.balanceList({type: 'balance'})">
+			<span>余额总额：</span>
+			<i>${{pageInfo.credit2||0}}</i>
+		</div>
+		<div class="rec-act mb5 bal-act" ui-sref="user.balanceList({type: 'red'})">
+			<span>红包总数：</span>
+			<i>${{pageInfo.userRedNum||0}}</i>
+		</div>
+		<div class="rec-act bal-act"  ui-sref="user.balanceList({type: 'point'})">
+			<span>D扣券总数：</span>
+			<i>${{pageInfo.credit1||0}}</i>
+		</div>
+	</ion-content>
+</ion-view>
+

@@ -1,0 +1,27 @@
+<div id="return-model" style="height: auto;padding-bottom: 40px;">
+	<div class="return-tit">
+		<h3>{{poptitle[poptype]}}</h3>
+	</div>
+	<ul class="return-list">
+		<li class="return-item" ng-repeat="(i,list) in retof[poptype]" ng-click="selectpoptype(poptype,i)">
+			<span>{{list}}</span>
+			<i class="round " ng-class="popnum[poptype] == i?'ion-ios-checkmark':'ion-ios-circle-outline'"></i>
+		</li>
+		<!--<li class="return-item">-->
+			<!--<span>协商一致道歉</span>-->
+			<!--<i class="round ion-ios-circle-outline"></i>-->
+		<!--</li>-->
+		<!--<li class="return-item">-->
+			<!--<span>缺货</span>-->
+			<!--<i class="round ion-ios-circle-outline"></i>-->
+		<!--</li>-->
+		<!--<li class="return-item">-->
+			<!--<span>其他</span>-->
+			<!--<i class="round ion-ios-circle-outline"></i>-->
+		<!--</li>-->
+	</ul>
+	<!--<div class="bar return-btn">-->
+		<!--<button class="new-btn" ng-click="popover.hide()">确 定</button>-->
+	<!--</div>-->
+</div>
+

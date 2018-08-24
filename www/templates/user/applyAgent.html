@@ -1,0 +1,50 @@
+<ion-view view-title="申请成为分销商" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear"  btn-back></button>
+		</div>
+		<h1 class="title">{{'1000068'|T}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="rec-act new-act new-act-inp">
+			<span style="color: red;">{{'1000069'|T}}</span>
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000070'|T}}:</span>
+			<input type="text" placeholder="{{'1000071'|T}}" ng-model="userInfo.realname">
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000072'|T}}:</span>
+			<input type="text" placeholder="{{'1000073'|T}}" ng-model="userInfo.mobile">
+		</div>
+<!-- 		<div class="rec-act new-act new-act-inp">
+			<span>输入推荐ID</span>
+			<input type="text" placeholder="请输入推荐ID" ng-model="userInfo.mobile">
+		</div> -->
+
+		 <!-- <div class="rec-act new-act new-act-inp">
+			<span>所在地区:</span>
+			<select ng-model="area.province" ng-change="proToPro(area.province, x.title)">
+				<option value="" class="text-overflow_1">省</option>
+				<option value="{{key}}" ng-repeat="(key, x) in areaList">{{x.title}}</option>
+			</select>
+
+			<select ng-model="area.city" ng-change="proToCity(area.city)">
+				<option value="">市</option>
+				<option value="{{key}}" ng-repeat="(key, x) in cities">{{x.title}}</option>
+			</select>
+
+			<select ng-model="area.districts" ng-change="proToArea(area.districts)">
+				<option value="">区县</option>
+				<option value="{{x}}" ng-repeat="(key, x) in districts">{{x}}</option>
+			</select>
+		</div> -->
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000074'|T}}</span>
+			<input type="text" placeholder="{{'1000075'|T}}" ng-model="userInfo.note">
+		</div>
+		<div class="padding sure-btn">
+			<button class="button button-block button-assertive" ng-click="applySub()">{{'1000076'|T}}</button>
+		</div>
+	</ion-content>
+</ion-view>

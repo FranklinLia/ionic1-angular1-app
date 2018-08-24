@@ -1,0 +1,98 @@
+<!-- 线下商家信息 -->
+<ion-view view-title="" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{shopsdetail.title}}</h1>
+	</ion-header-bar>
+	<ion-content>
+		<ion-slide-box delegate-handle="slideimgs" does-continue="true" show-pager="true" auto-play="true">
+			<ion-slide ng-repeat="focus in shopsdetail.thumbs">
+				<a href="javascript:"><img ng-src="{{focus}}" width="100%" class="banner-img"></a>
+			</ion-slide>
+		</ion-slide-box>
+		<div class="shopInfo-img" ng-if="shopsdetail.thumbs == ''">
+			<img src="img/noGoods_h.jpg" alt="">
+		</div>
+		<div class="shop-top-rig shopInfo-tit">
+			<span>{{shopsdetail.title}}</span>
+			<div class="shopInfo-star">
+				<ul class="shop-star">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<span>5.0分</span>
+			</div>
+		</div>
+		<div class="shopInfo-address">
+			<span class="shopInfo-add text-overflow_1" ng-disabled = '!shopsdetail.locationUrl' ng-click="showAddress(shopsdetail.locationUrl)">{{shopsdetail.birthInfo  || '暂无'}}</span>
+			<span class="index-news-more"><a href="tel:{{shopsdetail.tel}}" style="display: block;"><i class="icon ion-ios-telephone-outline"></i></a></span>
+		</div>
+		<div class="shopInfo-address">
+			<span class="shopInfo-time text-overflow_1">营业时间 : {{shopsdetail.shopTime || '00:00-23:59'}}</span>
+			<button class="off_buy_btn" ui-sref="user.balanceAttorn({type:'credit2'})">买&nbsp;单</button>
+		</div>
+		<!--<div class="shopInfo-address">-->
+			<!--<span class="shopInfo-shop text-overflow_1">线上店铺：河南恒聚</span>-->
+			<!--<span class="shopInfo-more">进入<i class="icon ion-ios-arrow-right"></i></span>-->
+		<!--</div>-->
+		<div class="shopInfo-visited">
+			<span>已有<span class="shopInfo-person">{{shopsdetail.clicks}}</span>人光临本店</span>
+		</div>
+		<div class="shopInfo-eva">
+			<span>总体评价</span>
+			<ul class="shop-star">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<span>5.0分</span>
+		</div>
+		<div class="shopInfo-det">
+			<span>商家简介</span>
+			<p ng-bind-html="shopsdetail.content || '暂无'"></p>
+		</div>
+		<!--<div class="shopInfo-det">-->
+			<!--<span>附近商家推荐</span>-->
+		<!--</div>-->
+		<!--<div class="ord-detail" ng-repeat="goods in shopList" ui-sref="offline.shopInfo({spid:goods.id})">-->
+			<!--<div class="ord-left con-left index-left" >-->
+				<!--<img class="con-left-img"  ng-src="{{goods.logo || 'img/noGoods.png'}}" alt="">-->
+				<!--<div class="ord-good-det">-->
+					<!--<p class="text-overflow_1">{{goods.title}}</p>-->
+					<!--<span class="con-good-bot">-->
+                        <!--<span>{{goods.lookNum}}人光临</span>-->
+                        <!--<ul class="shop-star">-->
+							<!--<li></li>-->
+							<!--<li></li>-->
+							<!--<li></li>-->
+							<!--<li></li>-->
+							<!--<li></li>-->
+						<!--</ul>-->
+                    <!--</span>-->
+					<!--<span class="con-good-bot">-->
+                        <!--<span class="text-overflow_1" style="color: #5F5F5F;">{{goods.place}}</span>-->
+                        <!--<span>{{goods.distance}}</span>-->
+                    <!--</span>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" icon="" immediate-check="false">-->
+		<!--</ion-infinite-scroll>-->
+	</ion-content>
+	<ion-footer-bar>
+		<!-- 底部导航 -->
+		<div class="shopInfo-foot">
+			<button ng-click="praise()"><span></span>{{shopsdetail.followNum}}赞</button>
+			<button ng-disabled = '!shopsdetail.locationUrl' ng-click="showAddress(shopsdetail.locationUrl)"><span class="shopInfo-to-top"></span>去这里</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>
+
+

@@ -1,0 +1,54 @@
+<!-- 支付页面 -->
+<ion-view view-title="收银台" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000194'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div class="pay-pri">
+			<span>{{'10000196'|T}}</span>
+			<span class="pay-pri-num">${{checkout.orderId.payPrice}}</span>
+		</div>
+		<div class="pay-style mt5">
+			<span>{{'10000195'|T}}</span>
+		</div>
+		<ul class="pay-list">
+			<!-- <li class="pay-item" ng-click="selectPayType('alipay')">
+				<span class="pay-zhifubao">支付宝</span>
+				<i ng-class="{'ion-ios-checkmark active': payType == 'alipay', 'ion-ios-circle-outline': payType != 'alipay'}"></i>
+			</li>
+			<li class="pay-item" ng-click="selectPayType('wechat')">
+				<span class="pay-weixin">微信支付</span>
+				<i ng-class="{'ion-ios-checkmark active': payType == 'wechat', 'ion-ios-circle-outline': payType != 'wechat'}"></i>
+			</li> -->
+			<li class="pay-item" ng-click="selectPayType('credit')">
+				<span class="pay-yue">{{'10000184'|T}}</span>
+				<i ng-class="{'ion-ios-checkmark active': payType == 'credit', 'ion-ios-circle-outline': payType != 'credit'}"></i>
+			</li>
+<!-- 			<li class="pay-item" ng-click="selectPayType('hxpay')">
+				<span class="pay-hx">环迅支付</span>
+				<i ng-class="{'ion-ios-checkmark active': payType == 'hxpay', 'ion-ios-circle-outline': payType != 'hxpay'}"></i>
+			</li> -->
+			<!--<li class="pay-item">-->
+				<!--<span class="pay-yinlian">银联支付</span>-->
+				<!--<label class="checkbox car-ckbox">-->
+					<!--<input type="checkbox">-->
+				<!--</label>-->
+			<!--</li>-->
+			<!--<li class="pay-item">-->
+				<!--<span class="pay-huodao">货到付款</span>-->
+				<!--<label class="checkbox car-ckbox">-->
+					<!--<input type="checkbox">-->
+				<!--</label>-->
+			<!--</li>-->
+		</ul>
+		<div class="pay-btn pay-special-btn">
+			<button ng-click="orderConfirm()">{{'10000170'|T}}</button>
+			<!--<button ui-sref="user.paySuccess">去支付</button>-->
+		</div>
+	</ion-content>
+</ion-view>
+

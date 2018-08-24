@@ -1,0 +1,32 @@
+<ion-view view-title="添加收货地址" hide-nav-bar="true" hide-back-button="true">
+	<!-- 新增收货地址 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000126'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000017'|T}}</span>
+			<input type="text" placeholder="{{'1000018'|T}}" ng-model="userInfo.name">
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000016'|T}}</span>
+			<input type="text" placeholder="{{'1000019'|T}}" ng-model="userInfo.mobile">
+		</div>
+		<div class="rec-act new-act new-act-inp" ng-click="areaShow()">
+			<span>{{'1000020'|T}}</span>
+			<span>{{userInfo.area || '1000021'|T}}<i class="iconfont icon-right"></i></span>
+			<!--<span class="new-icon"></span>-->
+		</div>
+		<div class="rec-act new-act new-act-inp">
+			<span>{{'1000023'|T}}:</span>
+			<input type="text" placeholder="{{'1000024'|T}}" ng-model="userInfo.infoAddress">
+		</div>
+	</ion-content>
+	<ion-footer-bar>
+		<button class="new-btn" ng-click="addresSubmit()">{{'1000025'|T}}</button>
+	</ion-footer-bar>
+</ion-view>

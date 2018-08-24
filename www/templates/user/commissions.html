@@ -1,0 +1,43 @@
+<ion-view view-title="佣金明细" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{agentList.type || '佣金明细'}}</h1>
+		<div class="buttons" ng-click="myVar = !myVar">
+			<button class="button iconfont icon-more button-clear"></button>
+		</div>
+		<div class="floatMenu" ng-if="myVar">
+			<span class="triangle-up"></span>
+			<ul>
+				<li ng-click="agentListDet('goods')"><span>商品分销</span></li>
+				<li ng-click="agentListDet('channel')"><span>渠道分销</span></li>
+				<li ng-click="agentListDet('city')"><span>地区代理</span></li>
+				<li ng-click="agentListDet('pool')"><span>全球分红</span></li>
+				<li ng-click="agentListDet('cashback')"><span>商品返佣</span></li>
+			</ul>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<ion-refresher pulling-text="下拉刷新" refreshing-icon="" on-refresh="doRefresh()"></ion-refresher>
+
+		<span class="with-sum">共<i>{{agentList.countNum}}</i>条数据，合计佣金<i>{{agentList.cashPrice}}</i>元</span>
+		<div class="car-empty" ng-if="orderEmpty">
+			<div class="col-empty-bg"></div>
+			<span>什么也没有...</span>
+		</div>
+		<div class="rec-act new-act-inp" ng-repeat="x in agentList.list" ng-if="!orderEmpty">
+			<div class="cash-con">
+				<p class="text-overflow_1">订单号：{{x.orderId}}</p>
+				<i>{{x.createtime}}</i>
+			</div>
+			<div>
+				<p class="com-price">+{{x.price}}</p>
+				<span class="with-stutas"><i ng-if="x.status == 1">正常</i><i ng-if="x.status == 2">完成</i><i ng-if="x.status != 1 && x.status != 2">完成</i></span>
+			</div>
+		</div>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>

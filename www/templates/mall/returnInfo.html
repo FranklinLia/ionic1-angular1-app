@@ -1,0 +1,21 @@
+<ion-view view-title="退货申请" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">退货信息</h1>
+	</ion-header-bar>
+	<ion-content>
+		<div class="s_return_info">
+			<ul>
+				<li class="flex first"><span>退货单号</span><p class="flex_1" style="padding-left: 15px">{{orderSn}}</p></li>
+				<li class="flex"><label>物流渠道</label><input type="text" ng-model="apply.express" class="flex_1" placeholder="请输入物流公司"></li>
+				<li class="flex"><label>物流单号</label><input type="text" ng-model="apply.expressNo" class="flex_1" placeholder="请输入物流单号"></li>
+			</ul>
+		</div>
+
+		<div class="padding sure-btn" style="padding-top: 20px;">
+			<button class="button button-block button-assertive" ng-click="sureApply()">提交</button>
+		</div>
+	</ion-content>
+</ion-view>

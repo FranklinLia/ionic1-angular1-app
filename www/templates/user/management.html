@@ -1,0 +1,61 @@
+<ion-view view-title="账户设置" hide-nav-bar="true" hide-back-button="true">
+	<!-- 账户设置 -->
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'100006'|T}}</h1>
+	</ion-header-bar>
+	<!-- 内容 -->
+	<ion-content class="man-con">
+		<ul class="mt5">
+			<li class="rec-act pinf-act" ui-sref="user.personInfo">
+				<span>{{'100007'|T}}</span>
+				<span class="new-icon"></span>
+			</li>
+			<!--<li class="rec-act pinf-act" ui-sref="user.bindAccount">-->
+				<!--<span>账号绑定</span>-->
+				<!--<span class="new-icon"></span>-->
+			<!--</li>-->
+		</ul>
+		<ul class="mt5">
+			<li class="rec-act pinf-act" ui-sref="user.address">
+				<span>{{'1000015'|T}}</span>
+				<span class="new-icon"></span>
+			</li>
+			<li class="rec-act pinf-act" ui-sref="user.certification">
+				<span>{{'1000027'|T}}</span>
+				<span class="new-icon"></span>
+			</li>
+		</ul>
+		<ul class="mt5">
+			<li class="rec-act pinf-act" ui-sref="user.modifyPsd({type: '1'})">
+				<span>{{'1000034'|T}}</span>
+				<span class="new-icon"></span>
+			</li>
+			<li class="rec-act pinf-act" ui-sref="user.modifyPsd({type: '2'})">
+				<span>{{'1000039'|T}}</span>
+				<span class="new-icon"></span>
+			</li>
+			<!--<li class="rec-act pinf-act">-->
+				<!--<span>清除缓存</span>-->
+			<!--</li>-->
+			<li class="rec-act pinf-act" ui-sref="user.aboutUs">
+				<span>{{'1000042'|T}}</span>
+				<span class="new-icon"></span>
+			</li>
+		</ul>
+		<!--<li ui-sref="user.aboutUs">-->
+			<!--<a href="javascript:;" class="flex">-->
+				<!--<b class="ion-happy-outline calm"></b>-->
+				<!--<h3 class="flex_1">关于我们</h3>-->
+				<!--<i class="ion-ios-arrow-right t_arrow_right"></i>-->
+			<!--</a>-->
+		<!--</li>-->
+		<div class="pay-btn man-btn">
+			<button ng-click="logout()">
+				<span>{{'1000048'|T}}</span>
+			</button>
+		</div>
+	</ion-content>
+</ion-view>

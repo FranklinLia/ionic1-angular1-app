@@ -1,0 +1,44 @@
+<div id="shoplist-model">
+	<div style="width: 100%;">
+		<div class="pro-head foo-head">
+			<a btn-back></a>
+			<span>线下商家</span>
+			<i class="icon ion-ios-search-strong"></i>
+		</div>
+		<ul class="shoplist-top">
+			<li>
+				<span>商家分类</span>
+				<i class="icon ion-ios-arrow-down"></i>
+			</li>
+			<li ng-click="areaShow()">
+				<span>区域选择</span>
+				<i class="icon ion-ios-arrow-down"></i>
+			</li>
+		</ul>
+	</div>
+	<ion-scroll class="address-det shoplist-det" scrollbar-y="false">
+		<ul class="address-list">
+			<li class="list-det-item list-det-active">
+				<span>全部</span>
+				<i ng-if="!list-det-active" class="icon ion-checkmark-round list-checked"></i>
+			</li>
+			<li class="list-det-item">
+				<span>金水区</span>
+				<i ng-if="list-det-active" class="icon ion-checkmark-round list-checked"></i>
+			</li>
+			<li class="list-det-item">
+				<span>二七区</span>
+				<i ng-if="list-det-active" class="icon ion-checkmark-round list-checked"></i>
+			</li>
+			<li class="list-det-item">
+				<span>管城区</span>
+				<i ng-if="list-det-active" class="icon ion-checkmark-round list-checked"></i>
+			</li>
+			<li class="list-det-item">
+				<span>经济开发区</span>
+				<i ng-if="list-det-active" class="icon ion-checkmark-round list-checked"></i>
+			</li>
+		</ul>
+	</ion-scroll>
+</div>
+

@@ -1,0 +1,71 @@
+<ion-view view-title="提现中心" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-assertive header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" btn-back></button>
+		</div>
+		<h1 class="title">{{'10000228'|T}}</h1>
+		<div class="buttons" ui-sref="user.withRecords({type: 'balance'})">
+			<button class="button iconfont icon-dingdan button-clear"></button>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<div>
+			<div class="rec-act new-act new-act-inp">
+				<span>{{'10000229'|T}}:</span>
+				<span>${{giveMoney.money || '0'}}</span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>{{'10000230'|T}}:</span>
+				<span>{{giveMoney.money_times || '0'}}</span>
+			</div>
+<!-- 			<div class="rec-act new-act new-act-inp">
+				<span>提现将收取{{giveMoney.creditWithdrawPercent || '0'}}%的手续费！</span>
+			</div> -->
+			<div class="rec-act new-act new-act-inp">
+				<span>{{'10000232'|T}} :</span>
+				<span ng-click="selectType()">{{info.payTitle || '1000022'|T}}<i class="iconfont icon-right"></i></span>
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>{{'10000233'|T}}:</span>
+				<input type="text" placeholder="{{'10000238'|T}}"  ng-model="info.money" >
+			</div>
+			<div class="rec-act new-act new-act-inp">
+				<span>{{'1000029'|T}}:</span>
+				<input type="text" placeholder="{{'1000030	'|T}}"  ng-model="giveMoney.user.realname" >
+			</div>
+			<div class="rec-act new-act new-act-inp" ng-if="info.payType == 'bank'">
+				<span>{{'10000239'|T}}:</span>
+				<input type="text" placeholder="{{'10000244'|T}}"  ng-model="giveMoney.user.bankName">
+			</div>
+			<div class="rec-act new-act new-act-inp" ng-if="info.payType == 'bank'">
+				<span>{{'10000240'|T}}:</span>
+				<input type="text" placeholder="{{'10000245'|T}}"  ng-model="giveMoney.user.card">
+			</div>
+			<div class="rec-act new-act new-act-inp" ng-if="info.payType == 'bank'">
+				<span>{{'10000241'|T}} :</span>
+				<input type="text" placeholder="{{'10000246'|T}}" ng-model="giveMoney.user.bankNameNo">
+			</div>
+			<div class="rec-act new-act new-act-inp" ng-if="info.payType == 'alipay'">
+				<span>{{'10000242'|T}}:</span>
+				<input type="text" placeholder="{{'10000247'|T}}" ng-model="giveMoney.user.alipay">
+			</div>
+			<div class="rec-act new-act new-act-inp" ng-if="info.payType == 'wechat'">
+				<span>{{'10000243'|T}}:</span>
+				<input type="text" placeholder="{{'10000248'|T}}" ng-model="giveMoney.user.teamNum">
+			</div>
+<!-- 			<div class="rec-act new-act new-act-inp">
+				<span>短信验证:</span>
+				<input type="text" placeholder="请输入验证码" maxlength="9" ng-model="info.code" style="width: 40%;">
+				<button class="button button-small button-assertive btn" ng-click="getCaptcha()" ng-disabled = 'getCaptchaSuccess'>
+					<span style="color: #fff;" ng-if="!getCaptchaSuccess">获取验证码</span><span style="color: #fff;" ng-if="getCaptchaSuccess">重新获取{{reg.number}}s</span>
+				</button>
+			</div> -->
+		</div>
+	</ion-content>
+	<ion-footer-bar class="no-bgc">
+		<div class="pay-btn eva-btn" >
+			<button ng-click="withSub()">{{'1000038'|T}}</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>
+
