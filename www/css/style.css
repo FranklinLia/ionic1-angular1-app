@@ -4099,14 +4099,32 @@
 	line-height: 40px;
 	color: #f5a623;
 }
+.languages{
+	background-image: -moz-linear-gradient( 90deg, rgb(51,178,233) 0%, rgb(53,92,140) 100%);
+	background-image: -webkit-linear-gradient( 90deg, rgb(51,178,233) 0%, rgb(53,92,140) 100%);
+	background-image: -ms-linear-gradient( 90deg, rgb(51,178,233) 0%, rgb(53,92,140) 100%);
+}
+.language-title{
+	margin: 10%;
+	color: #ffffff;
+}
+.language-title span{
+	font-size: 20px;
+}
 .language-switching{
-	opacity: 0.8;
-	position: absolute;
-	top: 10px;
-	right: 12px;
-	z-index: 9999;
-	border: 1px solid #fff;
-	background: #ff7300;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 100px;
+}
+.language-switching p{
+	width: 60%;
+	margin-left: 20%;
+	height: 80px;
+	background-color: #47b8f9;
+	text-align: center;
+	border-radius: 10px;
+	font-size: 18px;
+	line-height: 80px;
+	margin-bottom: 20px;
 	color: #fff;
-	border-radius: 20px;
 }

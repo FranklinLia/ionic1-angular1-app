@@ -24,11 +24,12 @@
 		</div>
 		<div class="rec-act new-act-inp" ng-repeat="t in order">
 			<div class="cash-con">
-				<p>{{'10000237'|T}}</p>
-				<i>2018-8-18</i>
+				<!-- <p>{{'10000237'|T}}</p> -->
+				<p>{{t.remark}}</p>
+				<!-- <i>2018-8-18</i> -->
 			</div>
 			<div>
-				<p class="with-price">+{{t.num}}</p>
+				<p class="with-price">{{t.num}}</p>
 			</div>
 		</div>
 
@@ -37,8 +38,8 @@
 	</ion-content>
 	<ion-footer-bar class="bar bar-footer" ng-if="type == 'shop'">
 		<div class="pay-btn eva-btn" >
-			<button class="balance" ng-click="creditCharge()">{{'10000235'|T}}</button>
-			<button class="balance" ng-click="creditWithdraw()">{{'10000236'|T}}</button>
+			<button class="balance" ng-click="creditCharge()">{{'10000236'|T}}</button>
+			<button class="balance" ng-click="creditWithdraw()">{{'10000235'|T}}</button>
 		</div>
 	</ion-footer-bar>
 </ion-view>

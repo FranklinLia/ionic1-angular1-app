@@ -6,7 +6,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://develop.dh-tech.cn"
+      "proxyUrl": "http://app.hwang11.top"
     }
   ],
   "type": "ionic1",

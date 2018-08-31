@@ -238,6 +238,20 @@ angular.module('starter.services', [])
 				});
 				return deferred.promise;
 			},
+			underList: function (success,error,page) {
+				var res = $resource(ENV.API_URL + '?do=user');
+				//Message.loading();
+				page = page || 1;
+				res.save({op: 'creditInfo', page: page},success,error);
+				// return deferred.promise;
+			},
+			completeRebate: function (success,error,page) {
+				var res = $resource(ENV.API_URL + '?do=user');
+				//Message.loading();
+				page = page || 1;
+				res.get({op: 'completeRebate', page: page},success,error);
+				// return deferred.promise;
+			},
 			// 修改支付密码
 			setPayPassword: function (_t, pasa) {
 				var resource = $resource(ENV.API_URL + '?do=user');
@@ -247,9 +261,9 @@ angular.module('starter.services', [])
 				if(_t == 'save'){
 					_json = {
 						op: 'setPayPassword',
+						mobile: pasa.mobile,
 						safePassword: pasa.newpsd,
 						reSafePassword: pasa.respsd,
-						code: pasa.code
 					}
 				}else if(_t == 'code'){
 					_json = {
@@ -716,7 +730,6 @@ angular.module('starter.services', [])
 					op: 'joinAgent',
 					name: info.realname,
 					mobile: info.mobile,
-					note: info.note,
 					type: 'send',
 				};
 				resource.save(_json, function (response) {
@@ -1696,16 +1709,13 @@ angular.module('starter.services', [])
 			getshopInfo:function(success,error,spid){
 				resource.save({op:'payLine',spid:spid},success,error)
 			},
-			underList: function (page) {
-				Message.loading();
-				var deferred = $q.defer();
-				page = page || 1;
-				resource.save({op: 'joinRebate', page: page}, function (response) {
-					Message.hidden();
-					deferred.resolve(response);
-				});
-				return deferred.promise;
-			},
+			// underList: function (success,error,page) {
+			// 	var res = $resource(ENV.API_URL + '?do=user');
+			// 	//Message.loading();
+			// 	page = page || 1;
+			// 	res.save({op: 'creditInfo', page: page},success,error);
+			// 	// return deferred.promise;
+			// },
 			// 线下商家
 			getShopsDetail: function (spid) {
 				Message.loading();
@@ -1972,7 +1982,6 @@ angular.module('starter.services', [])
 						op: 'underConsume',
 						mobile: giveInfo.mobile,
 						num: giveInfo.giveNum,
-						code: giveInfo.code,
 						type: 'check'
 					}
 				}else if(pasa == 'code'){
@@ -1990,7 +1999,7 @@ angular.module('starter.services', [])
 								Message.show(response.msg)
 							}, 1000);
 							if(pasa == 'save'){
-								$state.go('user.balanceList',{type:'red'})
+								$state.go('shop.offOrderList')
 							}
 						}
 

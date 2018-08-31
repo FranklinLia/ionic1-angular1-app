@@ -6,17 +6,17 @@
 		</div>
 		<div class="pro-head">
 			<ul class="pro-nav col-nav">
-				<li ng-class="{'pro-active':type == 'shopFollow'}" ng-click="selectType('shopFollow')">店铺</li>
-				<li ng-class="{'pro-active':type == 'goodsLike'}"  ng-click="selectType('goodsLike')">商品</li>
+				<li ng-class="{'pro-active':type == 'shopFollow'}" ng-click="selectType('shopFollow')">{{'10000109'|T}}</li>
+				<li ng-class="{'pro-active':type == 'goodsLike'}"  ng-click="selectType('goodsLike')">{{'10000105'|T}}</li>
 			</ul>
 		</div>
 	</ion-header-bar>
 	<ion-content style="top: 50px;">
-		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<ion-refresher pulling-text="{{'10000161'|T}}..." on-refresh="doRefresh()"></ion-refresher>
 		<!-- 收藏为空时 -->
 		<div class="car-empty" ng-if="orderEmpty">
 			<div class="col-empty-bg"></div>
-			<span>您还没有收藏哦~</span>
+			<span>{{'1000066'|T}}</span>
 		</div>
 		<div class="cla-con">
 			<ul class="col-tabs-list">
@@ -28,12 +28,12 @@
 								<p>{{list.title}}</p>
 								<span class="car-con-bot">
 									<span>
-										<span class="mr8">{{list.care}}人关注</span>
+										<span class="mr8">{{list.care}}{{'10000302'|T}}</span>
 									</span>
 								</span>
 								<span class="car-con-bot">
 									<span  ng-click="delTrack(list.id,$event,$index)">
-										<span class="sto-special mr8"><i class="iconfont icon-delete"></i>删除</span>
+										<span class="sto-special mr8"><i class="iconfont icon-delete"></i>{{'10000129'|T}}</span>
 										<!--<span class="sto-ticket">券</span>-->
 									</span>
 								</span>
@@ -58,7 +58,7 @@
 								</span>
 								<span class="car-con-bot">
 									<span  ng-click="delTrack(list.id,$event,$index)">
-										<span class="sto-special mr8"><i class="iconfont icon-delete"></i>删除</span>
+										<span class="sto-special mr8"><i class="iconfont icon-delete"></i>{{'10000129'|T}}</span>
 										<!--<span class="sto-ticket">券</span>-->
 									</span>
 								</span>
@@ -70,7 +70,9 @@
 			</ul>
 			<!-- 为您推荐 -->
 			<div class="ind-hotListTit nomargTop">
-				<img src="img/imgs/col-tuijian.png">
+				<!-- <img src="img/new/tuijian.png"> -->
+				<p>{{'1000097'|T}}</p>
+				<!-- <img class="ind-icon-more" src="img/imgs/jiantou-right.png" ui-sref="mall.list"> -->
 			</div>
 			<div class="ind-tuijian" >
 				<div class="ind-tuijian-item" ng-repeat="list in moreGoods" ui-sref="mall.goods({id:list.id})">

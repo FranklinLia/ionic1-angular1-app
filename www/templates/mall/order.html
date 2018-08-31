@@ -58,8 +58,8 @@
 						<button class="btn ord-pay" ng-if="list.orderStatus != -1"  ui-sref="mall.evaluate({orderSn: list.orderSn})">{{'10000171'|T}}</button>
 					</div>
 					<div class="ord-sum" ng-if="list.payStatus == 1 && (list.orderStatus ==0 || list.orderStatus == 1)">
-						<button class="btn ord-del" ui-sref="mall.return({orderSn:list.orderSn})">{{'10000173'|T}}</button>
-						<button class="btn ord-pay" ng-if="list.orderStatus == 1" ng-click="confirmGoods(list.orderSn)">{{'10000174'|T}}</button>
+						<button class="btn ord-del" ui-sref="mall.return({orderSn:list.orderSn})">{{'10000174'|T}}</button>
+						<button class="btn ord-pay" ng-if="list.orderStatus == 1" ng-click="confirmGoods(list.orderSn)">{{'10000173'|T}}</button>
 					</div>
 				</div>
 			</li>

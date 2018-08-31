@@ -14,17 +14,17 @@
 						<div class="per-inf" style="margin-left: 10px;">
 							<img ng-src="{{globalInfo.data.avatar||pageInfo.avatar||'img/imgs/reg-headimg.png'}}" alt="" ui-sref="user.management">
 							<p ng-if="!pageInfo.uid&&!globalInfo.data.uid">
-								<span ui-sref="auth.login">{{'100002'|T}}</span>
+								<span ui-sref="auth.languages({type:'1'})">{{'100002'|T}}</span>
 								<span class="per-line"></span>
-								<span ui-sref="auth.register">{{'100003'|T}}</span>
+								<span ui-sref="auth.languages({type:'2'})">{{'100003'|T}}</span>
 							</p>
 							<div ng-if="pageInfo.uid||globalInfo.data.uid" style="width: 70%;">
 								<span style="display: block;color: #000;" class="text-overflow_1">{{'100004'|T}}：{{pageInfo.nickname||globalInfo.data.nickname||'100005'|T}}</span>
 								<p >UID：{{pageInfo.uid||globalInfo.data.uid}}</p>
-								<span class="lev" ng-if="pageInfo.isPlus == 1">城市服务商</span><span class="lev" ng-if="pageInfo.cityPartner == 1">城市合伙人</span>
+<!-- 								<span class="lev" ng-if="pageInfo.isPlus == 1">城市服务商</span><span class="lev" ng-if="pageInfo.cityPartner == 1">城市合伙人</span> -->
 							</div>
 						</div>
-						<button ng-if="false" class="per-sign"  ng-click="toUrl('user.sign')">签到</button>
+						<!-- <button ng-if="false" class="per-sign"  ng-click="toUrl('user.sign')">签到</button> -->
 					</div>
 					<ul class="per-list">
 						<li class="per-item" ui-sref="user.storeColl({type:'shopFollow'})" style="height: 72px;">
@@ -88,7 +88,7 @@
 				<!--<span>优惠券</span>-->
 			<!--</li>-->
 			<li class="per-item"  ui-sref="user.balanceList({type: 'point'})">
-				<span class="per-red text-overflow_1">{{pageInfo.credit4||0}}</span>
+				<span class="per-red text-overflow_1">{{pageInfo.sumAgent||0}}</span>
 				<span>{{'1000062'|T}}</span>
 			</li>
 		</ul>
@@ -113,21 +113,21 @@
 			</div>
 			<i class="ion-ios-arrow-right"></i>
 		</div>
-		<div class="my_btm_nav"  ng-if="globalInfo.data.isShop == 0 || pageInfo.isShop == 0" ng-click="isCityAgent()">
+		<div class="my_btm_nav"  ng-if="pageInfo.isPlus == 0" ng-click="isCityAgent()">
 			<div class="left">
 				<i class="iconfont icon-wode1" style="background: #ffc900;"></i>
 				<span>{{'1000067'|T}}</span>
 			</div>
 			<i class="ion-ios-arrow-right"></i>
 		</div>
-		<div class="my_btm_nav"  ng-if="globalInfo.data.isShop == 0 || pageInfo.isShop == 0" ng-click="toApplyShop()">
+		<div class="my_btm_nav"  ng-if="pageInfo.isShop == 0" ng-click="toApplyShop()">
 			<div class="left">
 				<i class="iconfont icon-wode1" style="background: #ffc900;"></i>
 				<span>{{'1000077'|T}}</span>
 			</div>
 			<i class="ion-ios-arrow-right"></i>
 		</div>
-		<div class="my_btm_nav"   ui-sref="shop.center" ng-if="globalInfo.data.isDappShop > 0 || pageInfo.isShop > 0">
+		<div class="my_btm_nav"   ui-sref="shop.center" ng-if="pageInfo.isShop > 0">
 			<div class="left">
 				<i class="iconfont icon-shopfill"></i>
 				<span>{{'10000134'|T}}</span>

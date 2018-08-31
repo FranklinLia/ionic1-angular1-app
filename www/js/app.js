@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.routes', 'st
 		var exit = false;
 		$ionicPlatform.registerBackButtonAction(function (e) {
 			e.preventDefault();
-			if ($location.path() == '/tab/home' || $location.path() == '/tab/index' || $location.path() == '/auth/login' || $location.path() == '/tab/my') {
+			if ($location.path() == '/auth/login' || $location.path() == '/tab/my') {
 				if (exit) {
 					ionic.Platform.exitApp();
 				} else {
@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.routes', 'st
 		}, 101);
 
 		$rootScope.$on('$stateChangeStart', function (event, toState) {
-			var noNeedLogin = ['auth.login', 'auth.register', 'auth.resetPsd','oneLogin','tab.home','tab.category','tab.cart', 'tab.index','tab.my', 'mall.shop', 'mall.list','mall.goods','mall.search','offline.shopList','offline.shopInfo','offline.newsList','offline.newsInfo'];
+			var noNeedLogin = ['auth.login', 'auth.register', 'auth.languages', 'auth.resetPsd','oneLogin','tab.home','tab.category','tab.cart', 'tab.index','tab.my', 'mall.shop', 'mall.list','mall.goods','mall.search','offline.shopList','offline.shopInfo','offline.newsList','offline.newsInfo'];
 			if (noNeedLogin.indexOf(toState.name) < 0 && !User.checkAuth()) {
 				event.preventDefault(); //阻止默认事件，即原本页面的加载
 				$state.go('auth.login')
@@ -93,8 +93,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.routes', 'st
 		'REGULAR_PASSWORD': /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,
 		'API_URL': 'http://192.168.1.86:8100/api/dapp/146/api.dhc',
 		'YD_URL': 'http://192.168.1.86:8100/api/service/146/api.dhc',
-		// 'API_URL': 'http://develop.dh-tech.cn/dapp/146/api.dhc',
-		// 'YD_URL': 'http://develop.dh-tech.cn/service/146/api.dhc',
+		// 'API_URL': 'http://app.hwang11.top/dapp/146/api.dhc',
+		// 'YD_URL': 'http://app.hwang11.top/service/146/api.dhc',
 		'default_avatar': 'img/nav.png'
 	})
 

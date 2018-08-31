@@ -114,6 +114,17 @@ angular.module('starter.routes', [])
 				}
 			})
 
+			.state('auth.languages', {
+				url: '/languages/:type',
+				// cache: false,
+				views: {
+					'content': {
+						templateUrl: 'templates/auth/languages.html',
+						controller: 'LanguagesCtrl'
+					}
+				}
+			})
+
 			.state("auth.resetPsd", {
 				url: "/resetPsd",
 				cache: false,
@@ -731,13 +742,8 @@ angular.module('starter.routes', [])
 				templateUrl: 'templates/offline/shopList.html',
 				controller: 'ShopListCtrl'
 			})
-			//切换语言
-			.state('tab.languages', {
-				url: '/languages/',
-				templateUrl: 'templates/home/tab-languages',
-				controller: 'LanguagesCtrl'
-			})
+			
 
 
-		$urlRouterProvider.otherwise('tab/home');
+		$urlRouterProvider.otherwise('auth/languages/1');
 	});

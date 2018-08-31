@@ -23,10 +23,10 @@
 		<ion-refresher pulling-text="{{'10000161'|T}}" refreshing-icon="" on-refresh="reload()"></ion-refresher>
 		<div style="height:44px"></div>
 		<div class="cx_remaining_cont">
-			<div class="car-empty" ng-if="!agentList">
+<!-- 			<div class="car-empty" ng-if="!agentList">
 				<div class="col-empty-bg"></div>
 				<span>{{'1000066'|T}}</span>
-			</div>
+			</div> -->
 			<div class="remin_list" ng-if="type == 'point'" ng-repeat="x in agentList">
 				<ul>
 					<li class="box-sizing">
@@ -48,7 +48,7 @@
 							<p>{{x.createtime*1000 | date:'yyyy-MM-dd HH:mm'}}</p>
 						</div>
 						<div class="remin_red_right">
-							<p>{{x.price}}</p>
+							<p>{{x.surplus}}</p>
 						</div>
 					</li>
 				</ul>
@@ -57,7 +57,7 @@
 				<ul>
 					<li class="box-sizing">
 						<div class="remin_text">
-							<p>Daily integral return value</p>
+							<p>{{'10000252'|T}}</p>
 							<p>{{t.createtime*1000 | date:'yyyy-MM-dd HH:mm'}}</p>
 						</div>
 						<div class="remin_red_right">
