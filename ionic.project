@@ -4,7 +4,7 @@
   "proxies": [
           {
             "path": "/api",
-            "proxyUrl": "http://mall.elememall.com"
+            "proxyUrl": ""
           }
         ]
 }

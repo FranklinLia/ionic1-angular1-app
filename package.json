@@ -40,9 +40,9 @@
       "id": "cordova-plugin-alipay",
       "locator": "https://github.com/charleyw/cordova-plugin-alipay.git",
       "variables": {
-        "PARTNER_ID": "2088621249787280",
-        "SELLER_ACCOUNT": "1932710179@qq.com",
-        "PRIVATE_KEY": "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAOHFpKEbA0Luvf/N7sDwruew4U0hYSxJLkxyMAgqQDJEz+OWlEH4Qfx3JWdbkIG2N7cdZxcRFBoKeEsgKK+WBQhlhM2+QqZ6SULOhD5wZGeActLdN5Ror5x0VV9yw2Ya9twPcjRJVYNypLTNequowtY6qaXNBf2OxgBgSj2BULC5AgMBAAECgYAHLeXCSb2cz0Kzc7T35a9qJrHDZiBU7C7Qt4DXgaBw+MczkYI9ZsuSX6eM1diOh2DWLdUtYpmlClgw62Df1IFsZ6G8zmjQf21oLX/TQUtxZXgof2YdzoMQfNO2OqMH4kVTbyHuj6AXF2lZZ2tLqIKi35SGcMBHGjQA6ej6mXJsEQJBAPhjiQez25lDvtLWHL/qiKnazV90lJHImUweq8fLtjFHvPoUdOPdSM4UuiP2PdycKyXoF37pORU/BSmMJ0B216sCQQDosLFJRrJH+UeuC2XZ6RRI4/DojsROsBpDtJtNdC8EEa0H7n3alGT2ExKlAlTDBlBl56JLUlgR9aV7TQLKzGUrAkAXQ2tAF25HynqC0J7csqCeF+oIOKj5hmolIPJBwiiMMQXX/jZ8aOs6seJFH/jnQpEf+b7JmhpIjSB0pbW/aeIFAkA4GvKEUpGGHSsVYhYq1rJXaO6bhGD9ACU1EgUoRc1YU9K+yNh7rbAyTSL/unIpnAoiqBlPxAkMO4itFEKKF4KFAkBIPaA0HYUQ+yGgEdw9PQrobBww08ir+inO74bQvL82eQH17XfxI38fs16W6khV044Rhytq5e9YFLY6i1tp5Bs4"
+        "PARTNER_ID": "",
+        "SELLER_ACCOUNT": "",
+        "PRIVATE_KEY": ""
       }
     },
     "cordova-plugin-jcore",
@@ -50,7 +50,7 @@
       "id": "cordova-plugin-wechat",
       "locator": "cordova-plugin-wechat",
       "variables": {
-        "WECHATAPPID": "wx89f17befe3953b85"
+        "WECHATAPPID": ""
       }
     },
     "cordova-plugin-whitelist@^1.3.3",

@@ -91,10 +91,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.routes', 'st
 	.constant('ENV', {
 		'REGULAR_MOBILE': /^1\d{10}$/,
 		'REGULAR_PASSWORD': /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,
-		'API_URL': 'http://192.168.1.86:8100/api/dapp/146/api.dhc',
-		'YD_URL': 'http://192.168.1.86:8100/api/service/146/api.dhc',
-		// 'API_URL': 'http://app.hwang11.top/dapp/146/api.dhc',
-		// 'YD_URL': 'http://app.hwang11.top/service/146/api.dhc',
+		'API_URL': '',
+		'YD_URL': '',
+		// 'API_URL': '',
+		// 'YD_URL': '',
 		'default_avatar': 'img/nav.png'
 	})
 
